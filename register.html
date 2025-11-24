@@ -17,48 +17,54 @@ h2 { color:#4B0082; font-weight:600; text-shadow:1px 1px 3px rgba(0,0,0,0.2); }
 
 .card { background: rgba(255,255,255,0.9); border-radius:15px; padding:25px; box-shadow:0 10px 25px rgba(0,0,0,0.3); margin-bottom:40px; position:relative; z-index:1; }
 
-.filter-input { width: 100%; font-size: 0.85rem; padding: 3px; border: 1px solid #ccc; border-radius: 5px; text-align: center; }
-
 #stats { font-size:1rem; font-weight:600; margin-bottom:15px; text-align:center; color:#4B0082; }
 #filteredCount { font-size:0.95rem; font-weight:500; margin-bottom:10px; text-align:center; color:#4B0082; }
 
 .table-responsive { overflow-x:auto; max-height:500px; position:relative; }
-#checkinTable { width:max-content; min-width:100%; table-layout:auto; }
-#checkinTable th, #checkinTable td { white-space:nowrap; vertical-align:middle; }
+#checkinTable { border-collapse: separate; border-spacing:0; min-width:100%; table-layout:auto; }
 
-#checkinTable thead th { position: sticky; top:0; z-index:5; background-color: #4B0082 !important; color: #fff !important; }
+#checkinTable th, #checkinTable td { white-space:nowrap; vertical-align:middle; text-align:center; }
 
-/* 固定序號與姓名欄表頭與內容 */
+/* 固定表頭 */
+#checkinTable thead th {
+  position: sticky;
+  top:0;
+  background-color:#4B0082;
+  color:#fff;
+  z-index:10;
+}
+
+/* 固定序號與姓名欄 */
 #checkinTable th:first-child,
-#checkinTable td:first-child,
+#checkinTable td:first-child {
+  position: sticky;
+  left:0;
+  background-color:#fff;
+  color:#000;
+  z-index:9;
+  border-right:1px solid rgba(0,0,0,0.2);
+}
+
 #checkinTable th:nth-child(2),
 #checkinTable td:nth-child(2) {
   position: sticky;
-  left:0;
-  background-color:#fff; /* 固定欄位背景白色 */
+  left:60px; /* 與序號欄寬度一致 */
+  background-color:#fff;
   color:#000;
-  z-index:3;
-  box-shadow: 2px 0 5px -2px rgba(0,0,0,0.2);
-  vertical-align: middle;
+  z-index:8;
+  border-right:1px solid rgba(0,0,0,0.2);
 }
 
-/* 姓名欄 z-index 調整，讓表頭與內容保持一致 */
-#checkinTable th:nth-child(2),
-#checkinTable td:nth-child(2) { z-index:2; }
-
-/* 手機版序號欄與姓名欄之間的淡垂直線 */
-@media (max-width: 768px) {
-  #checkinTable th:first-child,
-  #checkinTable td:first-child {
-    border-right: 1px solid rgba(0,0,0,0.2);
-  }
-}
-
+/* 行背景 */
 #checkinTable tbody tr:nth-child(even) { background-color: #F3E8FF; }
 #checkinTable tbody tr:nth-child(odd) { background-color: #FFFFFF; }
 
 #checkinTable th:first-child,
-#checkinTable td:first-child { vertical-align: middle !important; text-align: center !important; width: 60px; }
+#checkinTable td:first-child,
+#checkinTable th:nth-child(2),
+#checkinTable td:nth-child(2) {
+  vertical-align: middle;
+}
 
 footer { text-align:center; color:#555; background: rgba(255,255,255,0.1); padding:15px; font-size:0.95rem; margin-top:60px; }
 
