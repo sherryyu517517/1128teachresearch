@@ -7,9 +7,8 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-:root {
-    --nav-offset: 50px; /* 桌機版分頁整列右移，可自行調整 */
-}
+:root { --nav-offset: 50px; }
+
 body {
     font-family: 'Noto Sans TC', sans-serif;
     margin:0; padding:0;
@@ -17,39 +16,29 @@ body {
     overflow-x:hidden;
     position:relative;
 }
+
 /* 背景氣泡動畫 */
-.bubble {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.15;
-    pointer-events: none;
-    z-index: 0;
-}
+.bubble { position: absolute; border-radius: 50%; opacity: 0.15; pointer-events: none; z-index: 0; }
+
 /* 導覽列 */
-.navbar {
-    background: linear-gradient(90deg, rgba(75,0,130,0.85), rgba(147,112,219,0.85));
-    backdrop-filter: blur(10px);
-}
+.navbar { background: linear-gradient(90deg, rgba(75,0,130,0.85), rgba(147,112,219,0.85)); backdrop-filter: blur(10px); }
 .navbar-brand { color: #FFFFFF !important; font-weight: 700; }
 
 /* 桌機版分頁整列右移 */
-@media (min-width: 992px) {
-    .navbar-collapse { padding-left: var(--nav-offset); }
-}
+@media (min-width: 992px) { .navbar-collapse { padding-left: var(--nav-offset); } }
+
 /* 分頁水平間距 */
 .navbar-nav .nav-item { margin-left: 10px; margin-right: 10px; }
 /* 分頁文字及效果 */
 .navbar-nav .nav-link {
-    color: #FFFFFF !important; 
+    color: #FFFFFF !important;
     font-weight: 700;
     transition: transform 0.2s ease, font-size 0.2s ease, color 0.3s ease;
 }
-/* 桌機滑過放大 */
-.navbar-nav .nav-link:hover,
-.navbar-nav .nav-link:focus { transform: scale(1.2); }
-/* active 狀態亮黃色 */
+.navbar-nav .nav-link:hover, .navbar-nav .nav-link:focus { transform: scale(1.2); }
 .navbar-nav .nav-link.active { color: #FFD700 !important; }
-/* 手機版禁用滑動放大，active 亮黃 */
+
+/* 手機版 */
 @media (max-width: 992px) {
     .navbar-nav .nav-link {
         display: block;
@@ -58,17 +47,16 @@ body {
         transform: none !important;
     }
     .navbar-nav .nav-link.active { color: #FFD700 !important; }
-    /* 漢堡圖示位置靠右 */
-    .navbar-toggler { right: 15px; position: absolute; border: none; }
-    .navbar-toggler svg { width: 35px; height: 35px; }
+    /* 漢堡圖示位置與尺寸 */
+    .navbar-toggler { position: absolute; right: 10px; border: none; }
+    .navbar-toggler svg { width: 40px; height: 40px; fill: #FFFFFF; stroke: #FFFFFF; stroke-width: 1; }
 }
+
 /* Hero Banner */
 .hero {
     position: relative;
     background: linear-gradient(rgba(75,0,130,0.7), rgba(147,112,219,0.6)), url('https://images.unsplash.com/photo-1564865881850-17f48f6f16ff?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
-    color: #fff;
-    text-align: center;
-    padding: 120px 20px 80px 20px;
+    color: #fff; text-align: center; padding: 120px 20px 80px 20px;
     box-shadow: inset 0 0 100px rgba(0,0,0,0.3);
 }
 .hero h1 { font-size: 3rem; font-weight: 700; text-shadow: 1px 1px 8px rgba(0,0,0,0.5); }
@@ -76,60 +64,26 @@ body {
 @media (max-width: 576px) { .hero { padding: 80px 15px 50px 15px; } .hero h1 { font-size: 1.8rem; line-height:1.3; } .hero-bottom-text { font-size: 0.95rem; margin-top:20px; } }
 
 /* 卡片淡入 */
-.card-custom {
-    background: #FFFFFF;
-    border-radius: 0;
-    padding: 20px;
-    margin-bottom: 30px;
-    border: 1px solid #DDD;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.8s ease;
-}
+.card-custom { background: #FFFFFF; border-radius: 0; padding: 20px; margin-bottom: 30px; border: 1px solid #DDD; opacity: 0; transform: translateY(50px); transition: all 0.8s ease; }
 .card-custom.visible { opacity: 1; transform: translateY(0); }
 @media (max-width: 576px) { .card-custom { padding: 15px; } }
 
 /* 區塊標題 */
 .section-title { color: #6A0DAD; font-weight: 700; }
-
 /* 活動資訊小日曆圖示 */
-.section-title .calendar-icon {
-    display:inline-block;
-    width:40px; height:40px;
-    background:#ADD8E6;
-    color:#fff;
-    font-weight:700;
-    border-radius:6px;
-    text-align:center;
-    margin-right:10px;
-    line-height:1;
-    font-size:14px;
-    padding-top:2px;
-    vertical-align:middle;
-}
+.section-title .calendar-icon { display:inline-block; width:40px; height:40px; background:#ADD8E6; color:#fff; font-weight:700; border-radius:6px; text-align:center; margin-right:10px; line-height:1; font-size:14px; padding-top:2px; vertical-align:middle; }
 .section-title .calendar-icon .month { display:block; font-size:10px; opacity:0.8; }
 .section-title .calendar-icon .day { display:block; font-size:18px; font-weight:700; line-height:18px; }
 
 .list-group-item { border:1px solid #DDD; }
+
 /* 按鈕 */
-.btn-custom {
-    background: linear-gradient(90deg, #4B0082, #9370DB);
-    color:#fff;
-    font-weight:600;
-    border-radius:8px;
-    padding:10px 25px;
-    transition:0.3s;
-    display:inline-block;
-}
+.btn-custom { background: linear-gradient(90deg, #4B0082, #9370DB); color:#fff; font-weight:600; border-radius:8px; padding:10px 25px; transition:0.3s; display:inline-block; }
 .btn-custom:hover { background: linear-gradient(90deg, #9370DB, #4B0082); transform: scale(1.05); }
+
 /* Footer */
-.footer {
-    background-color: #F3E8FF;
-    color: #4B0082;
-    padding: 15px 0;
-    text-align:center;
-    border-top:1px solid #E0D0F0;
-}
+.footer { background-color: #F3E8FF; color: #4B0082; padding: 15px 0; text-align:center; border-top:1px solid #E0D0F0; }
+
 </style>
 </head>
 <body>
@@ -139,8 +93,8 @@ body {
 <div class="container">
     <a class="navbar-brand" href="index.html">🎉 佳里奇美醫院 114年度 </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <!-- 使用 Bootstrap Icons SVG -->
-        <svg xmlns="http://www.w3.org/2000/svg" fill="white" class="bi bi-list" viewBox="0 0 16 16">
+        <!-- Bootstrap Icons SVG，白色、加粗線條 -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="white" stroke="white" stroke-width="1" class="bi bi-list" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M2.5 12.5a.5.5 0 010-1h11a.5.5 0 010 1h-11zm0-4a.5.5 0 010-1h11a.5.5 0 010 1h-11zm0-4a.5.5 0 010-1h11a.5.5 0 010 1h-11z"/>
         </svg>
     </button>
@@ -231,14 +185,7 @@ for(let i=0;i<bubbleCount;i++){
   document.body.appendChild(b);
   bubbles.push({el:b,x:parseFloat(b.style.left),y:parseFloat(b.style.top),dx:(Math.random()-0.5)*0.6,dy:-Math.random()*0.8-0.2});
 }
-function animateBubbles(){
-  bubbles.forEach(b=>{ b.x+=b.dx;b.y+=b.dy;
-    if(b.y+parseFloat(b.el.style.height)<0){b.y=height;b.x=Math.random()*width;}
-    if(b.x<0)b.x=width;if(b.x>width)b.x=0;
-    b.el.style.left=b.x+'px';b.el.style.top=b.y+'px';
-  });
-  requestAnimationFrame(animateBubbles);
-}
+function animateBubbles(){ bubbles.forEach(b=>{ b.x+=b.dx;b.y+=b.dy; if(b.y+parseFloat(b.el.style.height)<0){b.y=height;b.x=Math.random()*width;} if(b.x<0)b.x=width;if(b.x>width)b.x=0; b.el.style.left=b.x+'px';b.el.style.top=b.y+'px'; }); requestAnimationFrame(animateBubbles); }
 animateBubbles();
 window.addEventListener('resize',()=>{width=window.innerWidth;height=window.innerHeight;});
 </script>
@@ -248,10 +195,7 @@ window.addEventListener('resize',()=>{width=window.innerWidth;height=window.inne
 const cards = document.querySelectorAll('.card-custom');
 function revealCards() {
     const triggerBottom = window.innerHeight * 0.85;
-    cards.forEach(card => {
-        const cardTop = card.getBoundingClientRect().top;
-        if(cardTop < triggerBottom) card.classList.add('visible');
-    });
+    cards.forEach(card => { const cardTop = card.getBoundingClientRect().top; if(cardTop < triggerBottom) card.classList.add('visible'); });
 }
 window.addEventListener('scroll', revealCards);
 window.addEventListener('load', revealCards);
@@ -260,12 +204,7 @@ window.addEventListener('load', revealCards);
 <!-- 點擊縮回動畫與 active 顯示 -->
 <script>
 const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-navLinks.forEach(link=>{
-    link.addEventListener('click', ()=>{
-        navLinks.forEach(l=>l.classList.remove('active'));
-        link.classList.add('active');
-    });
-});
+navLinks.forEach(link=>{ link.addEventListener('click', ()=>{ navLinks.forEach(l=>l.classList.remove('active')); link.classList.add('active'); }); });
 </script>
 
 </body>
