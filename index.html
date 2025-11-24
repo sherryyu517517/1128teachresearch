@@ -8,6 +8,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
+:root {
+    --nav-offset: 50px; /* 桌機版分頁整列右移，可自行調整 */
+}
+
 body {
     font-family: 'Noto Sans TC', sans-serif;
     margin:0; padding:0;
@@ -32,11 +36,13 @@ body {
 }
 .navbar-brand { color: #FFFFFF !important; font-weight: 700; }
 
-/* 分頁水平間距 */
-.navbar-nav .nav-item {
-    margin-left: 5px;   /* 調整桌機分頁距離 */
-    margin-right: 5px;
+/* 桌機版分頁整列右移 */
+@media (min-width: 992px) {
+    .navbar-collapse { padding-left: var(--nav-offset); }
 }
+
+/* 分頁水平間距 */
+.navbar-nav .nav-item { margin-left: 10px; margin-right: 10px; }
 
 /* 分頁文字及效果 */
 .navbar-nav .nav-link {
@@ -47,14 +53,10 @@ body {
 
 /* 桌機滑過放大 */
 .navbar-nav .nav-link:hover,
-.navbar-nav .nav-link:focus {
-    transform: scale(1.2);
-}
+.navbar-nav .nav-link:focus { transform: scale(1.2); }
 
 /* active 狀態亮黃色 */
-.navbar-nav .nav-link.active {
-    color: #FFD700 !important;
-}
+.navbar-nav .nav-link.active { color: #FFD700 !important; }
 
 /* 手機：禁用滑動放大，active 亮黃 */
 @media (max-width: 992px) {
@@ -65,38 +67,6 @@ body {
         transform: none !important;
     }
     .navbar-nav .nav-link.active { color: #FFD700 !important; }
-
-    /* 手機版選單右滑樣式 */
-    .navbar-collapse {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 260px;
-        height: 100%;
-        background: linear-gradient(90deg, rgba(75,0,130,0.95), rgba(147,112,219,0.95));
-        padding-top: 60px;
-        transition: right 0.35s ease;
-        z-index: 999;
-    }
-    .navbar-collapse.show {
-        right: 0;
-    }
-
-    /* 遮罩 */
-    .overlay {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background: rgba(0,0,0,0.5);
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.35s ease;
-        z-index: 998;
-    }
-    .overlay.show {
-        opacity: 1;
-        visibility: visible;
-    }
 }
 
 /* Hero Banner */
@@ -149,7 +119,7 @@ body {
 .section-title .calendar-icon {
     display:inline-block;
     width:40px; height:40px;
-    background:#ADD8E6; /* 淺藍色 */
+    background:#ADD8E6;
     color:#fff;
     font-weight:700;
     border-radius:6px;
@@ -175,10 +145,7 @@ body {
     transition:0.3s;
     display:inline-block;
 }
-.btn-custom:hover {
-    background: linear-gradient(90deg, #9370DB, #4B0082);
-    transform: scale(1.05);
-}
+.btn-custom:hover { background: linear-gradient(90deg, #9370DB, #4B0082); transform: scale(1.05); }
 
 /* Footer */
 .footer {
@@ -191,9 +158,6 @@ body {
 </style>
 </head>
 <body>
-
-<!-- 手機選單遮罩 -->
-<div class="overlay" id="menuOverlay"></div>
 
 <!-- 導覽列 -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -218,13 +182,10 @@ body {
 <!-- Hero Banner -->
 <section class="hero">
     <h1>主治醫師暨臨床教師餐敘</h1>
-    <div class="hero-bottom-text">
-        主辦：教學研究組｜協辦：台南市醫師公會
-    </div>
+    <div class="hero-bottom-text">主辦：教學研究組｜協辦：台南市醫師公會</div>
 </section>
 
 <main class="container mt-5">
-
 <!-- 活動資訊 -->
 <section class="mb-5">
     <h3 class="section-title mb-3">
@@ -241,7 +202,7 @@ body {
                     <li class="list-group-item"><strong>日期：</strong> 114年11月28日 (五)</li>
                     <li class="list-group-item"><strong>時間：</strong> 18:30 (18:00 開始報到)</li>
                     <li class="list-group-item"><strong>地點：</strong> 東東宴會式場-華平囍嫁館</li>
-                    <li class="list-group-item"><strong>廳別：</strong> <span style="color:#0077FF; font-weight:600;">2F東嬿廳</span></li>
+                    <li class="list-group-item"><strong>廳別：</strong> <span style="color:#0077FF; font-weight:700;">2F東嬿廳</span></li>
                 </ul>
             </section>
         </div>
@@ -271,7 +232,6 @@ body {
         </ul>
     </section>
 </section>
-
 </main>
 
 <footer class="footer">
@@ -322,31 +282,13 @@ window.addEventListener('scroll', revealCards);
 window.addEventListener('load', revealCards);
 </script>
 
-<!-- 漢堡選單與遮罩控制 -->
+<!-- 點擊縮回動畫與 active 顯示 -->
 <script>
-const toggler = document.querySelector('.navbar-toggler');
-const collapse = document.getElementById('navbarNav');
-const overlay = document.getElementById('menuOverlay');
-
-toggler.addEventListener('click', ()=>{
-    collapse.classList.toggle('show');
-    overlay.classList.toggle('show');
-});
-
-// 點擊遮罩關閉選單
-overlay.addEventListener('click', ()=>{
-    collapse.classList.remove('show');
-    overlay.classList.remove('show');
-});
-
-// 點選選單選項後自動關閉
 const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
 navLinks.forEach(link=>{
     link.addEventListener('click', ()=>{
         navLinks.forEach(l=>l.classList.remove('active'));
         link.classList.add('active');
-        collapse.classList.remove('show');
-        overlay.classList.remove('show');
     });
 });
 </script>
