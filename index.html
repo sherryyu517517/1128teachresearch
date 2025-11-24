@@ -6,6 +6,7 @@
 <title>佳里奇美醫院 114年度 主治醫師暨臨床教師餐敘</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
 :root { --nav-offset: 50px; }
 
@@ -17,39 +18,58 @@ body {
     position:relative;
 }
 
-/* 背景氣泡動畫 */
+/* 背景氣泡 */
 .bubble { position: absolute; border-radius: 50%; opacity: 0.15; pointer-events: none; z-index: 0; }
 
 /* 導覽列 */
 .navbar { background: linear-gradient(90deg, rgba(75,0,130,0.85), rgba(147,112,219,0.85)); backdrop-filter: blur(10px); }
 .navbar-brand { color: #FFFFFF !important; font-weight: 700; }
 
-/* 桌機版分頁整列右移 */
-@media (min-width: 992px) { .navbar-collapse { padding-left: var(--nav-offset); } }
-
 /* 分頁水平間距 */
-.navbar-nav .nav-item { margin-left: 5px; margin-right: 5px; }
-/* 分頁文字及效果 */
+.navbar-nav .nav-item { margin-left: 8px; margin-right: 8px; }
+
+/* 分頁文字 */
 .navbar-nav .nav-link {
     color: #FFFFFF !important;
     font-weight: 700;
     transition: transform 0.2s ease, font-size 0.2s ease, color 0.3s ease;
 }
-.navbar-nav .nav-link:hover, .navbar-nav .nav-link:focus { transform: scale(1.2); }
+.navbar-nav .nav-link:hover { transform: scale(1.2); }
 .navbar-nav .nav-link.active { color: #FFD700 !important; }
 
-/* 手機版 */
+/* 手機版漢堡 icon */
 @media (max-width: 992px) {
-    .navbar-nav .nav-link {
-        display: block;
-        text-align: center;
-        margin: 5px 0;
-        transform: none !important;
-    }
-    .navbar-nav .nav-link.active { color: #FFD700 !important; }
-    /* 漢堡圖示位置與尺寸 */
-    .navbar-toggler { position: absolute; right: 10px; border: none; }
+    .navbar-toggler { position: absolute; right: 15px; border: none; }
     .navbar-toggler svg { width: 40px; height: 40px; fill: #FFFFFF; stroke: #FFFFFF; stroke-width: 1; }
+
+    /* 手機版箭頭貼近標題 */
+    .nav-link-arrow::before {
+        left: -18px !important;
+        font-size: 1.2rem !important;
+    }
+}
+
+/* ⭐ 紅色閃爍箭頭動畫 */
+.nav-link-arrow {
+  position: relative;
+  padding-left: 22px; /* 電腦版箭頭靠近但不蓋字 */
+}
+
+.nav-link-arrow::before {
+  content: "➤";
+  position: absolute;
+  left: -10px; /* ⭐ 電腦版微左移，避免遮字 */
+  top: 50%;
+  transform: translateY(-50%);
+  color: #FF3333;
+  font-size: 1.15rem;
+  animation: arrow-flash 1s infinite alternate;
+}
+
+@keyframes arrow-flash {
+  0% { opacity: 1; transform: translateY(-50%) translateX(0); }
+  50% { opacity: 0.2; transform: translateY(-50%) translateX(5px); }
+  100% { opacity: 1; transform: translateY(-50%) translateX(0); }
 }
 
 /* Hero Banner */
@@ -66,64 +86,45 @@ body {
 /* 卡片淡入 */
 .card-custom { background: #FFFFFF; border-radius: 0; padding: 20px; margin-bottom: 30px; border: 1px solid #DDD; opacity: 0; transform: translateY(50px); transition: all 0.8s ease; }
 .card-custom.visible { opacity: 1; transform: translateY(0); }
-@media (max-width: 576px) { .card-custom { padding: 15px; } }
 
-/* 區塊標題 */
 .section-title { color: #6A0DAD; font-weight: 700; }
-/* 活動資訊小日曆圖示 */
+
+/* 小日曆 icon */
 .section-title .calendar-icon { display:inline-block; width:40px; height:40px; background:#ADD8E6; color:#fff; font-weight:700; border-radius:6px; text-align:center; margin-right:10px; line-height:1; font-size:14px; padding-top:2px; vertical-align:middle; }
 .section-title .calendar-icon .month { display:block; font-size:10px; opacity:0.8; }
 .section-title .calendar-icon .day { display:block; font-size:18px; font-weight:700; line-height:18px; }
 
-.list-group-item { border:1px solid #DDD; }
-
-/* 按鈕 */
 .btn-custom { background: linear-gradient(90deg, #4B0082, #9370DB); color:#fff; font-weight:600; border-radius:8px; padding:10px 25px; transition:0.3s; display:inline-block; }
 .btn-custom:hover { background: linear-gradient(90deg, #9370DB, #4B0082); transform: scale(1.05); }
 
-/* Footer */
 .footer { background-color: #F3E8FF; color: #4B0082; padding: 15px 0; text-align:center; border-top:1px solid #E0D0F0; }
-
-/* 閃爍箭頭動畫 */
-.nav-link-arrow {
-  position: relative;
-  padding-left: 25px; /* 留出箭頭空間 */
-}
-.nav-link-arrow::before {
-  content: '➤'; /* 箭頭符號 */
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #FF3333;
-  font-size: 1.2rem;
-  animation: arrow-flash 1s infinite alternate;
-}
-
-@keyframes arrow-flash {
-  0% { opacity: 1; transform: translateY(-50%) translateX(0); }
-  50% { opacity: 0.2; transform: translateY(-50%) translateX(5px); }
-  100% { opacity: 1; transform: translateY(-50%) translateX(0); }
-}
 </style>
 </head>
+
 <body>
 
 <!-- 導覽列 -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 <div class="container">
     <a class="navbar-brand" href="index.html">🎉 佳里奇美醫院 114年度 </a>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <svg xmlns="http://www.w3.org/2000/svg" fill="white" stroke="white" stroke-width="1" class="bi bi-list" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M2.5 12.5a.5.5 0 010-1h11a.5.5 0 010 1h-11zm0-4a.5.5 0 010-1h11a.5.5 0 010 1h-11zm0-4a.5.5 0 010-1h11a.5.5 0 010 1h-11z"/>
         </svg>
     </button>
+
     <div class="collapse navbar-collapse ms-auto" id="navbarNav">
         <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a class="nav-link active" href="index.html">活動資訊</a></li>
             <li class="nav-item"><a class="nav-link" href="agenda.html">活動流程</a></li>
             <li class="nav-item"><a class="nav-link" href="register.html">報名名單</a></li>
-            <li class="nav-item"><a class="nav-link nav-link-arrow" href="checkin-終版-F.html">簽到入場</a></li>
+
+            <!-- ⭐ 加入紅色閃爍箭頭 -->
+            <li class="nav-item">
+                <a class="nav-link nav-link-arrow" href="checkin-終版-F.html">簽到入場</a>
+            </li>
+
             <li class="nav-item"><a class="nav-link" href="honors.html">優良暨傑出教師芳名錄</a></li>
             <li class="nav-item"><a class="nav-link" href="https://forms.gle/DBdC3ZScynWDzEps5" target="_blank">滿意度回饋</a></li>
         </ul>
@@ -138,12 +139,17 @@ body {
 </section>
 
 <main class="container mt-5">
+
 <!-- 活動資訊 -->
 <section class="mb-5">
     <h3 class="section-title mb-3">
-        <span class="calendar-icon"><span class="month">11月</span><span class="day">28</span></span>
+        <span class="calendar-icon">
+            <span class="month">11月</span>
+            <span class="day">28</span>
+        </span>
         活動資訊一覽
     </h3>
+
     <div class="row">
         <div class="col-md-6 mb-3">
             <section class="card-custom">
@@ -151,15 +157,18 @@ body {
                     <li class="list-group-item"><strong>日期：</strong> 114年11月28日 (五)</li>
                     <li class="list-group-item"><strong>時間：</strong> 18:30 (18:00 開始報到)</li>
                     <li class="list-group-item"><strong>地點：</strong> 東東宴會式場-華平囍嫁館</li>
-                    <li class="list-group-item"><strong>廳別：</strong> <span style="color:#0077FF; font-weight:700;">2F東嬿廳</span></li>
+                    <li class="list-group-item"><strong>廳別：</strong>
+                        <span style="color:#0077FF; font-weight:700;">2F東嬿廳</span>
+                    </li>
                 </ul>
             </section>
         </div>
+
         <div class="col-md-6 mb-3">
             <section class="card-custom">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><strong>聯絡窗口：</strong> 余守純小姐/謝佾樺小姐</li>
-                    <li class="list-group-item"><strong>聯絡分機：</strong> 32985/32987</li>
+                    <li class="list-group-item"><strong>聯絡窗口：</strong> 余守純小姐 / 謝佾樺小姐</li>
+                    <li class="list-group-item"><strong>聯絡分機：</strong> 32985 / 32987</li>
                     <li class="list-group-item"><strong>主辦單位：</strong> 佳里奇美醫院教學研究組</li>
                     <li class="list-group-item"><strong>協辦單位：</strong> 台南市醫師公會</li>
                 </ul>
@@ -181,6 +190,7 @@ body {
         </ul>
     </section>
 </section>
+
 </main>
 
 <footer class="footer">
@@ -190,5 +200,50 @@ body {
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- 背景泡泡動畫 -->
+<script>
+const bubbleColors=['#E6E6FA','#D8BFD8','#F0F8FF','#DDA0DD','#DA70D6','#9370DB'];
+const bubbles=[]; const bubbleCount=35;
+let width=window.innerWidth, height=window.innerHeight;
+for(let i=0;i<bubbleCount;i++){
+  let b=document.createElement('div'); b.classList.add('bubble');
+  let size=Math.random()*60+20;
+  b.style.width=size+'px'; b.style.height=size+'px';
+  b.style.left=Math.random()*width+'px'; b.style.top=Math.random()*height+'px';
+  b.style.background=bubbleColors[Math.floor(Math.random()*bubbleColors.length)];
+  document.body.appendChild(b);
+  bubbles.push({el:b,x:parseFloat(b.style.left),y:parseFloat(b.style.top),dx:(Math.random()-0.5)*0.6,dy:-Math.random()*0.8-0.2});
+}
+function animateBubbles(){ bubbles.forEach(b=>{ b.x+=b.dx;b.y+=b.dy; if(b.y+parseFloat(b.el.style.height)<0){b.y=height;b.x=Math.random()*width;} if(b.x<0)b.x=width;if(b.x>width)b.x=0; b.el.style.left=b.x+'px';b.el.style.top=b.y+'px'; }); requestAnimationFrame(animateBubbles); }
+animateBubbles();
+window.addEventListener('resize',()=>{width=window.innerWidth;height=window.innerHeight;});
+</script>
+
+<!-- 卡片淡入 -->
+<script>
+const cards = document.querySelectorAll('.card-custom');
+function revealCards() {
+    const triggerBottom = window.innerHeight * 0.85;
+    cards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        if(cardTop < triggerBottom) card.classList.add('visible');
+    });
+}
+window.addEventListener('scroll', revealCards);
+window.addEventListener('load', revealCards);
+</script>
+
+<!-- navbar active -->
+<script>
+const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+navLinks.forEach(link=>{
+    link.addEventListener('click', ()=>{
+        navLinks.forEach(l=>l.classList.remove('active'));
+        link.classList.add('active');
+    });
+});
+</script>
+
 </body>
 </html>
