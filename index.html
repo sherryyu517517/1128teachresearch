@@ -8,6 +8,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
+:root {
+    --nav-offset: 50px; /* 桌機版分頁整列右移，可自行調整 */
+}
+
 body {
     font-family: 'Noto Sans TC', sans-serif;
     margin:0; padding:0;
@@ -32,18 +36,13 @@ body {
 }
 .navbar-brand { color: #FFFFFF !important; font-weight: 700; }
 
-/* 分頁水平間距 */
-.navbar-nav .nav-item {
-    margin-left: 10px;
-    margin-right: 10px;
+/* 桌機版分頁整列右移 */
+@media (min-width: 992px) {
+    .navbar-collapse { padding-left: var(--nav-offset); }
 }
 
-/* 桌機版整列右移 */
-@media (min-width: 992px) {
-    .navbar-nav {
-        padding-left: 50px; /* 桌機版分頁整列往右 50px */
-    }
-}
+/* 分頁水平間距 */
+.navbar-nav .nav-item { margin-left: 10px; margin-right: 10px; }
 
 /* 分頁文字及效果 */
 .navbar-nav .nav-link {
@@ -54,14 +53,10 @@ body {
 
 /* 桌機滑過放大 */
 .navbar-nav .nav-link:hover,
-.navbar-nav .nav-link:focus {
-    transform: scale(1.2);
-}
+.navbar-nav .nav-link:focus { transform: scale(1.2); }
 
 /* active 狀態亮黃色 */
-.navbar-nav .nav-link.active {
-    color: #FFD700 !important;
-}
+.navbar-nav .nav-link.active { color: #FFD700 !important; }
 
 /* 手機：禁用滑動放大，active 亮黃 */
 @media (max-width: 992px) {
@@ -83,9 +78,22 @@ body {
     padding: 120px 20px 80px 20px;
     box-shadow: inset 0 0 100px rgba(0,0,0,0.3);
 }
-.hero h1 { font-size: 3rem; font-weight: 700; text-shadow: 1px 1px 8px rgba(0,0,0,0.5); }
-.hero-bottom-text { margin-top: 30px; font-size: 1.1rem; font-weight: 500; opacity: 0.95; }
-@media (max-width: 576px) { .hero { padding: 80px 15px 50px 15px; } .hero h1 { font-size: 1.8rem; line-height: 1.3; } .hero-bottom-text { font-size: 0.95rem; margin-top: 20px; } }
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    text-shadow: 1px 1px 8px rgba(0,0,0,0.5);
+}
+.hero-bottom-text {
+    margin-top: 30px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    opacity: 0.95;
+}
+@media (max-width: 576px) {
+    .hero { padding: 80px 15px 50px 15px; }
+    .hero h1 { font-size: 1.8rem; line-height: 1.3; }
+    .hero-bottom-text { font-size: 0.95rem; margin-top: 20px; }
+}
 
 /* 卡片淡入 */
 .card-custom {
@@ -98,7 +106,10 @@ body {
     transform: translateY(50px);
     transition: all 0.8s ease;
 }
-.card-custom.visible { opacity: 1; transform: translateY(0); }
+.card-custom.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 @media (max-width: 576px) { .card-custom { padding: 15px; } }
 
 /* 區塊標題 */
@@ -108,10 +119,16 @@ body {
 .section-title .calendar-icon {
     display:inline-block;
     width:40px; height:40px;
-    background:#ADD8E6; color:#fff; font-weight:700;
-    border-radius:6px; text-align:center;
-    margin-right:10px; line-height:1; font-size:14px;
-    padding-top:2px; vertical-align:middle;
+    background:#ADD8E6;
+    color:#fff;
+    font-weight:700;
+    border-radius:6px;
+    text-align:center;
+    margin-right:10px;
+    line-height:1;
+    font-size:14px;
+    padding-top:2px;
+    vertical-align:middle;
 }
 .section-title .calendar-icon .month { display:block; font-size:10px; opacity:0.8; }
 .section-title .calendar-icon .day { display:block; font-size:18px; font-weight:700; line-height:18px; }
@@ -119,11 +136,25 @@ body {
 .list-group-item { border:1px solid #DDD; }
 
 /* 按鈕 */
-.btn-custom { background: linear-gradient(90deg, #4B0082, #9370DB); color:#fff; font-weight:600; border-radius:8px; padding:10px 25px; transition:0.3s; display:inline-block; }
+.btn-custom {
+    background: linear-gradient(90deg, #4B0082, #9370DB);
+    color:#fff;
+    font-weight:600;
+    border-radius:8px;
+    padding:10px 25px;
+    transition:0.3s;
+    display:inline-block;
+}
 .btn-custom:hover { background: linear-gradient(90deg, #9370DB, #4B0082); transform: scale(1.05); }
 
 /* Footer */
-.footer { background-color: #F3E8FF; color: #4B0082; padding: 15px 0; text-align:center; border-top:1px solid #E0D0F0; }
+.footer {
+    background-color: #F3E8FF;
+    color: #4B0082;
+    padding: 15px 0;
+    text-align:center;
+    border-top:1px solid #E0D0F0;
+}
 </style>
 </head>
 <body>
@@ -155,11 +186,13 @@ body {
 </section>
 
 <main class="container mt-5">
-
 <!-- 活動資訊 -->
 <section class="mb-5">
     <h3 class="section-title mb-3">
-        <span class="calendar-icon"><span class="month">11月</span><span class="day">28</span></span>
+        <span class="calendar-icon">
+            <span class="month">11月</span>
+            <span class="day">28</span>
+        </span>
         活動資訊一覽
     </h3>
     <div class="row">
@@ -199,7 +232,6 @@ body {
         </ul>
     </section>
 </section>
-
 </main>
 
 <footer class="footer">
@@ -241,7 +273,8 @@ window.addEventListener('resize',()=>{width=window.innerWidth;height=window.inne
 const cards = document.querySelectorAll('.card-custom');
 function revealCards() {
     const triggerBottom = window.innerHeight * 0.85;
-    cards.forEach(card => { const cardTop = card.getBoundingClientRect().top;
+    cards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
         if(cardTop < triggerBottom) card.classList.add('visible');
     });
 }
@@ -249,7 +282,7 @@ window.addEventListener('scroll', revealCards);
 window.addEventListener('load', revealCards);
 </script>
 
-<!-- 分頁點擊 active -->
+<!-- 點擊縮回動畫與 active 顯示 -->
 <script>
 const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
 navLinks.forEach(link=>{
