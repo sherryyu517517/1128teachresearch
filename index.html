@@ -1,296 +1,137 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>114年度 主治醫師暨臨床教師餐敘</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>佳里奇美醫院 114年度 主治醫師暨臨床教師餐敘</title>
 
-<style>
-body {
-    font-family: 'Noto Sans TC', sans-serif;
-    margin:0; padding:0;
-    background: linear-gradient(135deg,#E6E6FA,#FFFFFF);
-    overflow-x:hidden;
-    position:relative;
-}
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-/* 背景氣泡動畫 */
-.bubble {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.15;
-    pointer-events: none;
-    z-index: 0;
-}
+    <style>
+        body {
+            background: #f7f7f7;
+            font-family: "Noto Sans TC", sans-serif;
+        }
 
-/* 導覽列 */
-.navbar {
-    background: linear-gradient(90deg, rgba(75,0,130,0.85), rgba(147,112,219,0.85));
-    backdrop-filter: blur(10px);
-}
-.navbar-brand, .nav-link { color: #FFFFFF !important; font-weight: 700; }
+        /* 主要內容白卡片 */
+        .main-card {
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+            padding: 40px 30px;
+            margin-top: 30px;
+        }
 
-/* 分頁 hover 效果（桌機） */
-.navbar-nav .nav-item {
-    margin-left: 8px;
-    margin-right: 8px;
-}
-.navbar-nav .nav-link {
-    transition: transform 0.2s ease, font-size 0.2s ease;
-}
-.navbar-nav .nav-link:hover,
-.navbar-nav .nav-link:focus,
-.navbar-nav .nav-link.active {
-    transform: scale(1.2);
-}
+        /* LOGO */
+        .logo {
+            width: 140px;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
 
-/* 手機：禁用分頁放大效果，避免跑版 */
-@media (max-width: 992px) {
-    .navbar-nav .nav-link {
-        display: block;
-        text-align: center;
-        margin: 5px 0;
-    }
-    .navbar-nav .nav-link:hover,
-    .navbar-nav .nav-link:focus,
-    .navbar-nav .nav-link.active {
-        transform: none !important;
-    }
-}
+        /* 標題 */
+        .main-title {
+            font-size: 28px;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
 
-/* Hero Banner */
-.hero {
-    position: relative;
-    background: linear-gradient(rgba(75,0,130,0.7), rgba(147,112,219,0.6)), url('https://images.unsplash.com/photo-1564865881850-17f48f6f16ff?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
-    color: #fff;
-    text-align: center;
-    padding: 120px 20px 80px 20px;
-    box-shadow: inset 0 0 100px rgba(0,0,0,0.3);
-}
-.hero h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    text-shadow: 1px 1px 8px rgba(0,0,0,0.5);
-}
-.hero p {
-    font-size: 1.3rem;
-    font-weight: 500;
-    margin-top: 15px;
-}
+        .sub-title {
+            text-align: center;
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 25px;
+        }
 
-/* 手機版 Hero 文字縮小 */
-@media (max-width: 576px) {
-    .hero {
-        padding: 80px 15px 50px 15px;
-    }
-    .hero h1 {
-        font-size: 1.8rem;
-        line-height: 1.3;
-    }
-    .hero p {
-        font-size: 1rem;
-    }
-}
+        /* 分頁 */
+        .nav-tabs .nav-link {
+            font-weight: 600;
+            padding: 12px 18px;
+        }
 
-/* 卡片動態淡入 */
-.card-custom {
-    background: #FFFFFF;
-    border-radius: 0;
-    padding: 20px;
-    margin-bottom: 30px;
-    border: 1px solid #DDD;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.8s ease;
-}
-.card-custom.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* 手機：卡片 padding 調整 */
-@media (max-width: 576px) {
-    .card-custom {
-        padding: 15px;
-    }
-}
-
-/* 區塊標題紫色 */
-.section-title {
-    color: #6A0DAD;
-    font-weight: 700;
-}
-
-/* 列表線條 */
-.list-group-item {
-    border: 1px solid #DDD;
-}
-
-/* 按鈕 */
-.btn-custom {
-    background: linear-gradient(90deg, #4B0082, #9370DB);
-    color: #fff;
-    font-weight: 600;
-    border-radius: 8px;
-    padding: 10px 25px;
-    transition: 0.3s;
-    display: inline-block;
-}
-.btn-custom:hover {
-    background: linear-gradient(90deg, #9370DB, #4B0082);
-    transform: scale(1.05);
-}
-
-/* Footer */
-.footer {
-    background-color: #F3E8FF;
-    color: #4B0082;
-    padding: 15px 0;
-    text-align: center;
-    border-top: 1px solid #E0D0F0;
-}
-</style>
+        /* 手機版調整 padding */
+        @media (max-width: 576px) {
+            .main-card {
+                padding: 25px 18px;
+            }
+            .main-title {
+                font-size: 22px;
+            }
+            .logo {
+                width: 110px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<!-- 導覽列 -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 <div class="container">
-    <a class="navbar-brand" href="index.html">🎉 佳里奇美醫院114年度</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse ms-auto" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link active" href="index.html">活動資訊</a></li>
-            <li class="nav-item"><a class="nav-link" href="agenda.html">活動流程</a></li>
-            <li class="nav-item"><a class="nav-link" href="registration.html">報名名單</a></li>
-            <li class="nav-item"><a class="nav-link" href="checkin-終版-F.html">當日報到系統</a></li>
-            <li class="nav-item"><a class="nav-link" href="honors.html">優良暨傑出教師芳名錄</a></li>
-            <li class="nav-item"><a class="nav-link" href="https://forms.gle/DBdC3ZScynWDzEps5" target="_blank">滿意度回饋</a></li>
+
+    <div class="main-card">
+
+        <!-- LOGO -->
+        <img src="chimei-logo2.png" class="logo" alt="佳里奇美 Logo">
+
+        <!-- 標題 -->
+        <h1 class="main-title">佳里奇美醫院 114年度<br>主治醫師暨臨床教師餐敘</h1>
+        <div class="sub-title">主辦單位：佳里奇美醫院｜協辦單位：台南市醫師公會</div>
+
+        <!-- 導覽列 Tabs -->
+        <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="checkin-tab" data-bs-toggle="tab" data-bs-target="#checkin" type="button" role="tab">報到系統</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab">活動資訊</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="survey-tab" data-bs-toggle="tab" data-bs-target="#survey" type="button" role="tab">滿意度調查</button>
+            </li>
         </ul>
-    </div>
-</div>
-</nav>
 
-<!-- Hero Banner -->
-<section class="hero">
-    <h1>主治醫師暨臨床教師餐敘</h1>
-    <p>主辦：佳里奇美醫院 | 
-       協辦：台南市醫師公會</p>
-</section>
+        <!-- Tab 內容 -->
+        <div class="tab-content mt-4" id="myTabContent">
 
-<main class="container mt-5">
+            <!-- 報到系統 -->
+            <div class="tab-pane fade show active" id="checkin" role="tabpanel">
+                <h5 class="fw-bold">📌 報到查詢</h5>
+                <p>請點擊下方按鈕開啟報到系統：</p>
 
-    <!-- 活動資訊 -->
-    <section class="mb-5">
-        <h3 class="section-title mb-3">📅 活動資訊一覽</h3>
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <section class="card-custom">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>日期：</strong> 114年11月28日 (五)</li>
-                        <li class="list-group-item"><strong>時間：</strong> 18:30 (18:00 開始報到)</li>
-                        <li class="list-group-item"><strong>主辦：</strong> 佳里奇美醫院</li>
-                        <li class="list-group-item"><strong>協辦：</strong> 台南市醫師公會</li>
-                    </ul>
-                </section>
+                <a href="checkin.html" class="btn btn-primary w-100 py-2">前往報到系統</a>
             </div>
-            <div class="col-md-6 mb-3">
-                <section class="card-custom">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>地點：</strong> 東東宴會式場-華平囍嫁館 (華平館)</li>
-                        <li class="list-group-item"><strong>地址：</strong> 台南市安平區華平路156號</li>
-                        <li class="list-group-item"><strong>聯絡窗口：</strong> 教學研究組</li>
-                        <li class="list-group-item"><strong>聯絡分機：</strong> 32985/32987</li>
-                    </ul>
-                </section>
+
+            <!-- 活動資訊 -->
+            <div class="tab-pane fade" id="info" role="tabpanel">
+                <h5 class="fw-bold">📅 活動資訊</h5>
+                <ul>
+                    <li>日期：114年 ○ 月 ○ 日（星期 ○）</li>
+                    <li>時間：18:00–21:00</li>
+                    <li>地點：佳里奇美醫院 ○ 樓 ○ 會議廳</li>
+                </ul>
             </div>
+
+            <!-- 滿意度調查 -->
+            <div class="tab-pane fade" id="survey" role="tabpanel">
+                <h5 class="fw-bold">📝 滿意度調查</h5>
+                <p>請協助填寫活動滿意度：</p>
+
+                <a href="https://forms.gle/DBdC3ZScynWDzEps5" target="_blank" class="btn btn-success w-100 py-2">
+                    開啟 Google 表單
+                </a>
+            </div>
+
         </div>
-    </section>
 
-    <!-- 交通與導航 -->
-    <section class="mb-5">
-        <h3 class="section-title mb-3">📍 交通與導航</h3>
-        <section class="card-custom">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>地點：</strong> 東東宴會式場-華平囍嫁館（台南市安平區華平路156號）</li>
-                <li class="list-group-item">
-                    <a href="https://www.google.com/maps?q=台南市安平區華平路156號" target="_blank" class="btn btn-custom mt-1">🚗 點擊前往 Google 地圖導航</a>
-                </li>
-                <li class="list-group-item">提醒：會場提供停車位，請依照現場指引停放車輛。</li>
-            </ul>
-        </section>
-    </section>
-
-</main>
-
-<footer class="footer">
-    <div class="container">
-        <span>© 佳里奇美醫院 教學研究組 版權所有</span>
     </div>
-</footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</div>
 
-<!-- 背景氣泡動畫 -->
-<script>
-const bubbleColors=['#E6E6FA','#D8BFD8','#F0F8FF','#DDA0DD','#DA70D6','#9370DB'];
-const bubbles=[]; const bubbleCount=35;
-let width=window.innerWidth, height=window.innerHeight;
-for(let i=0;i<bubbleCount;i++){
-  let b=document.createElement('div'); b.classList.add('bubble');
-  let size=Math.random()*60+20;
-  b.style.width=size+'px'; b.style.height=size+'px';
-  b.style.left=Math.random()*width+'px'; b.style.top=Math.random()*height+'px';
-  b.style.background=bubbleColors[Math.floor(Math.random()*bubbleColors.length)];
-  document.body.appendChild(b);
-  bubbles.push({el:b,x:parseFloat(b.style.left),y:parseFloat(b.style.top),dx:(Math.random()-0.5)*0.6,dy:-Math.random()*0.8-0.2});
-}
-function animateBubbles(){
-  bubbles.forEach(b=>{ b.x+=b.dx;b.y+=b.dy;
-    if(b.y+parseFloat(b.el.style.height)<0){b.y=height;b.x=Math.random()*width;}
-    if(b.x<0)b.x=width;if(b.x>width)b.x=0;
-    b.el.style.left=b.x+'px';b.el.style.top=b.y+'px';
-  });
-  requestAnimationFrame(animateBubbles);
-}
-animateBubbles();
-window.addEventListener('resize',()=>{width=window.innerWidth;height=window.innerHeight;});
-</script>
-
-<!-- 卡片滾動淡入動畫 -->
-<script>
-const cards = document.querySelectorAll('.card-custom');
-function revealCards() {
-    const triggerBottom = window.innerHeight * 0.85;
-    cards.forEach(card => {
-        const cardTop = card.getBoundingClientRect().top;
-        if(cardTop < triggerBottom) {
-            card.classList.add('visible');
-        }
-    });
-}
-window.addEventListener('scroll', revealCards);
-window.addEventListener('load', revealCards);
-</script>
-
-<!-- 點擊縮回動畫 -->
-<script>
-const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-navLinks.forEach(link=>{
-    link.addEventListener('click', ()=>{
-        link.classList.add('clicked');
-        setTimeout(()=> link.classList.remove('clicked'), 300);
-    });
-});
-</script>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
-
-
-
-
