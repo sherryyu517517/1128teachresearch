@@ -3,197 +3,255 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>報名名單 | 佳里奇美醫院114年度餐敘</title> 
+<title>佳里奇美醫院 114年度 主治醫師暨臨床教師餐敘</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
-body { font-family:'Noto Sans TC',sans-serif; background: linear-gradient(135deg,#E6E6FA,#FFFFFF); margin:0; padding:0; color:#000; overflow-x:hidden; position:relative; }
+:root { --nav-offset: 50px; }
 
-.navbar { background-color: #4B0082 !important; background: rgba(10,10,10,0.85); backdrop-filter: blur(10px); border-bottom:1px solid rgba(255,255,255,0.1); }
-.navbar-brand, .nav-link { color:#FFFFFF !important; font-weight:700; }
-.nav-link:hover, .nav-link.active { color:#FFD700 !important; }
-
-h2 { color:#4B0082; font-weight:600; text-shadow:1px 1px 3px rgba(0,0,0,0.2); }
-
-.card { background: rgba(255,255,255,0.9); border-radius:15px; padding:25px; box-shadow:0 10px 25px rgba(0,0,0,0.3); margin-bottom:40px; position:relative; z-index:1; }
-
-.filter-input { width: 100%; font-size: 0.85rem; padding: 3px; border: 1px solid #ccc; border-radius: 5px; text-align: center; }
-
-#stats { font-size:1rem; font-weight:600; margin-bottom:15px; text-align:center; color:#4B0082; }
-#filteredCount { font-size:0.95rem; font-weight:500; margin-bottom:10px; text-align:center; color:#4B0082; }
-
-.table-responsive { overflow-x:auto; max-height:500px; position:relative; }
-#checkinTable { width:max-content; min-width:100%; table-layout:auto; }
-#checkinTable th, #checkinTable td { white-space:nowrap; vertical-align:middle; }
-
-#checkinTable thead th { position: sticky; top:0; z-index:5; background-color: #4B0082 !important; color: #fff !important; }
-
-/* 固定序號與姓名欄 */
-#checkinTable th:first-child,
-#checkinTable td:first-child,
-#checkinTable th:nth-child(2),
-#checkinTable td:nth-child(2) {
-  position: sticky;
-  left:0;
-  background-color:#fff; /* 保持白色 */
-  color:#000;
-  z-index:3;
-  box-shadow: 2px 0 5px -2px rgba(0,0,0,0.3);
-  vertical-align: middle; /* 垂直置中 */
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    margin:0; padding:0;
+    background: linear-gradient(135deg,#E6E6FA,#FFFFFF);
+    overflow-x:hidden;
+    position:relative;
 }
-#checkinTable th:nth-child(2),
-#checkinTable td:nth-child(2) { z-index:2; }
 
-#checkinTable tbody tr:nth-child(even) { background-color: #F3E8FF; }
-#checkinTable tbody tr:nth-child(odd) { background-color: #FFFFFF; }
+/* 背景氣泡 */
+.bubble { position: absolute; border-radius: 50%; opacity: 0.15; pointer-events: none; z-index: 0; }
 
-#checkinTable th:first-child,
-#checkinTable td:first-child { vertical-align: middle !important; text-align: center !important; width: 60px; }
+/* 導覽列 */
+.navbar { background: linear-gradient(90deg, rgba(75,0,130,0.85), rgba(147,112,219,0.85)); backdrop-filter: blur(10px); }
+.navbar-brand { color: #FFFFFF !important; font-weight: 700; display:flex; align-items:center; }
 
-footer { text-align:center; color:#555; background: rgba(255,255,255,0.1); padding:15px; font-size:0.95rem; margin-top:60px; }
+/* 分頁水平間距 */
+.navbar-nav .nav-item { margin-left: 8px; margin-right: 8px; }
 
-@media (max-width: 768px) {
-  .filter-input { font-size:0.75rem; }
+/* 分頁文字 */
+.navbar-nav .nav-link {
+    color: #FFFFFF !important;
+    font-weight: 700;
+    transition: transform 0.2s ease, font-size 0.2s ease, color 0.3s ease;
 }
+.navbar-nav .nav-link:hover { transform: scale(1.2); }
+.navbar-nav .nav-link.active { color: #FFD700 !important; }
+
+/* ⭐ 紅色閃爍箭頭動畫 */
+.nav-link-arrow {
+    position: relative;
+    padding-left: 22px; /* 電腦版箭頭靠近但不蓋字 */
+}
+.nav-link-arrow::before {
+    content: "➤";
+    position: absolute;
+    left: -10px; /* 電腦版微左移，避免遮字 */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #FF3333;
+    font-size: 1.15rem;
+    animation: arrow-flash 1s infinite alternate;
+}
+@keyframes arrow-flash {
+    0% { opacity: 1; transform: translateY(-50%) translateX(0); }
+    50% { opacity: 0.2; transform: translateY(-50%) translateX(5px); }
+    100% { opacity: 1; transform: translateY(-50%) translateX(0); }
+}
+
+/* 手機版調整 */
+@media (max-width: 992px) {
+  .navbar-toggler { position: absolute; right: 15px; border: none; }
+    .navbar-toggler svg { width: 40px; height: 40px; fill: #FFFFFF; stroke: #FFFFFF; stroke-width: 1; }
+
+    .navbar-nav { text-align: center; }
+    .navbar-nav .nav-item { display: block; }
+
+    .nav-link-arrow {
+        padding-left: 0; /* 移除額外 padding */
+        display: inline-block;
+        position: relative;
+    }
+    .nav-link-arrow::before {
+        left: -22px; /* 🔹箭頭緊貼「簽」字左側 */
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.2rem;
+    }
+}
+
+/* Hero Banner */
+.hero {
+    position: relative;
+    background: linear-gradient(rgba(75,0,130,0.7), rgba(147,112,219,0.6)), url('https://images.unsplash.com/photo-1564865881850-17f48f6f16ff?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+    color: #fff; text-align: center; padding: 120px 20px 80px 20px;
+    box-shadow: inset 0 0 100px rgba(0,0,0,0.3);
+}
+.hero h1 { font-size: 3rem; font-weight: 700; text-shadow: 1px 1px 8px rgba(0,0,0,0.5); }
+.hero-bottom-text { margin-top: 30px; font-size: 1.1rem; font-weight: 500; opacity: 0.95; }
+@media (max-width: 576px) { .hero { padding: 80px 15px 50px 15px; } .hero h1 { font-size: 1.8rem; line-height:1.3; } .hero-bottom-text { font-size: 0.95rem; margin-top:20px; } }
+
+/* 卡片淡入 */
+.card-custom { background: #FFFFFF; border-radius: 0; padding: 20px; margin-bottom: 30px; border: 1px solid #DDD; opacity: 0; transform: translateY(50px); transition: all 0.8s ease; }
+.card-custom.visible { opacity: 1; transform: translateY(0); }
+
+.section-title { color: #6A0DAD; font-weight: 700; }
+
+/* 小日曆 icon */
+.section-title .calendar-icon { display:inline-block; width:40px; height:40px; background:#ADD8E6; color:#fff; font-weight:700; border-radius:6px; text-align:center; margin-right:10px; line-height:1; font-size:14px; padding-top:2px; vertical-align:middle; }
+.section-title .calendar-icon .month { display:block; font-size:10px; opacity:0.8; }
+.section-title .calendar-icon .day { display:block; font-size:18px; font-weight:700; line-height:18px; }
+
+.btn-custom { background: linear-gradient(90deg, #4B0082, #9370DB); color:#fff; font-weight:600; border-radius:8px; padding:10px 25px; transition:0.3s; display:inline-block; }
+.btn-custom:hover { background: linear-gradient(90deg, #9370DB, #4B0082); transform: scale(1.05); }
+
+.footer { background-color: #F3E8FF; color: #4B0082; padding: 15px 0; text-align:center; border-top:1px solid #E0D0F0; }
 </style>
 </head>
+
 <body>
 
+<!-- 導覽列 -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-  <div class="container">
+<div class="container">
     <a class="navbar-brand" href="index.html">
-       <img src="chimei-logo-green.png" alt="奇美醫院" style="height:36px; margin-right:8px;">
-      佳里奇美醫院114年度餐敘
+        <img src="chimei-logo-green.png" alt="奇美醫院" style="height:36px; margin-right:8px;">
+        佳里奇美醫院 114年度
     </a>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="white" stroke="white" stroke-width="1" class="bi bi-list" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M2.5 12.5a.5.5 0 010-1h11a.5.5 0 010 1h-11zm0-4a.5.5 0 010-1h11a.5.5 0 010 1h-11zm0-4a.5.5 0 010-1h11a.5.5 0 010 1h-11z"/>
+        </svg>
     </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
-         <li class="nav-item"><a class="nav-link active" href="index.html">回首頁</a></li>
-         <li class="nav-item"><a class="nav-link" href="agenda.html">活動流程</a></li>
-         <li class="nav-item"><a class="nav-link" href="register.html">報名名單</a></li>
-         <li class="nav-item"><a class="nav-link nav-link-arrow" href="checkin-終版-F.html">簽到入場</a></li>
-         <li class="nav-item"><a class="nav-link" href="honors.html">優良暨傑出教師芳名錄</a></li>
-         <li class="nav-item"><a class="nav-link" href="https://forms.gle/DBdC3ZScynWDzEps5" target="_blank">滿意度回饋</a></li>
-      </ul>
+
+    <div class="collapse navbar-collapse ms-auto" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link active" href="index.html">活動資訊</a></li>
+            <li class="nav-item"><a class="nav-link" href="agenda.html">活動流程</a></li>
+            <li class="nav-item"><a class="nav-link" href="register.html">報名名單</a></li>
+
+            <li class="nav-item">
+                <a class="nav-link nav-link-arrow" href="checkin-終版-F.html">簽到入場</a>
+            </li>
+
+            <li class="nav-item"><a class="nav-link" href="honors.html">優良暨傑出教師芳名錄</a></li>
+            <li class="nav-item"><a class="nav-link" href="https://forms.gle/DBdC3ZScynWDzEps5" target="_blank">滿意度回饋</a></li>
+        </ul>
     </div>
-  </div>
+</div>
 </nav>
 
-<main class="container" style="padding-top:100px;">
-  <div class="text-center mb-2">
-    <h2>✅ 已報名與會人員</h2>
-    <div class="d-flex justify-content-center align-items-center gap-2 mb-3">
-      <input id="globalSearch" type="text" class="form-control w-50" placeholder="🔍 全欄搜尋（姓名、科別、單位、備註）">
-      <button class="refresh-btn" onclick="filterTable()">🔍 搜尋</button>
-    </div>
-  </div>
+<!-- Hero Banner -->
+<section class="hero">
+    <h1>主治醫師暨臨床教師餐敘</h1>
+    <div class="hero-bottom-text">主辦：教學研究組｜協辦：台南市醫師公會</div>
+</section>
 
-  <div id="stats"></div>
-  <div id="filteredCount"></div>
+<main class="container mt-5">
 
-  <div class="card">
-    <div class="table-responsive">
-      <table class="table align-middle text-center" id="checkinTable">
-        <thead class="table-dark">
-          <tr>
-            <th>序號</th>
-            <th>姓名</th>
-            <th>單位<br><input type="text" class="filter-input" placeholder="篩選" onkeyup="columnFilter(2,this.value)"></th>
-            <th>職稱<br><input type="text" class="filter-input" placeholder="篩選" onkeyup="columnFilter(3,this.value)"></th>
-            <th>備註<br><input type="text" class="filter-input" placeholder="篩選" onkeyup="columnFilter(4,this.value)"></th>
-          </tr>
-        </thead>
-        <tbody id="tableBody">
-          <tr><td colspan="5" class="text-center text-muted">資料載入中...</td></tr>
-        </tbody>
-      </table>
+<!-- 活動資訊 -->
+<section class="mb-5">
+    <h3 class="section-title mb-3">
+        <span class="calendar-icon">
+            <span class="month">11月</span>
+            <span class="day">28</span>
+        </span>
+        活動資訊一覽
+    </h3>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <section class="card-custom">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>日期：</strong> 114年11月28日 (五)</li>
+                    <li class="list-group-item"><strong>時間：</strong> 18:30 (18:00 開始報到)</li>
+                    <li class="list-group-item"><strong>地點：</strong> 東東宴會式場-華平囍嫁館</li>
+                    <li class="list-group-item"><strong>廳別：</strong>
+                        <span style="color:#0077FF; font-weight:700;">2F東嬿廳</span>
+                    </li>
+                </ul>
+            </section>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <section class="card-custom">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>聯絡窗口：</strong> 余守純小姐 / 謝佾樺小姐</li>
+                    <li class="list-group-item"><strong>聯絡分機：</strong> 32985 / 32987</li>
+                    <li class="list-group-item"><strong>主辦單位：</strong> 佳里奇美醫院教學研究組</li>
+                    <li class="list-group-item"><strong>協辦單位：</strong> 台南市醫師公會</li>
+                </ul>
+            </section>
+        </div>
     </div>
-  </div>
+</section>
+
+<!-- 交通與導航 -->
+<section class="mb-5">
+    <h3 class="section-title mb-3">📍 交通與導航</h3>
+    <section class="card-custom">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>地點：</strong> 東東宴會式場-華平囍嫁館（台南市安平區華平路156號）</li>
+            <li class="list-group-item">
+                <a href="https://www.google.com/maps?q=台南市安平區華平路156號" target="_blank" class="btn btn-custom mt-1">🚗 點擊前往 Google 地圖導航</a>
+            </li>
+            <li class="list-group-item">提醒：會場提供停車位，請依照現場指引停放車輛。</li>
+        </ul>
+    </section>
+</section>
+
 </main>
 
-<footer>
-© 2025 佳里奇美醫院．教學研究組 | Designed for 114年度餐敘
+<footer class="footer">
+    <div class="container">
+        <span>© 佳里奇美醫院 教學研究組 版權所有</span>
+    </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- 背景泡泡動畫 -->
 <script>
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyT8PHxSadUi-cL2B-kDpN9DkqqRopc7QLMaXDrgNziv-Jsj9jZ7EqtPTFQT_FhFadz/exec";
-const tableBody = document.getElementById('tableBody');
-const statsEl = document.getElementById('stats');
-const filteredCountEl = document.getElementById('filteredCount');
-
-function maskName(name){
-  if(!name) return '';
-  if(name.length < 2) return name;
-  return name[0] + 'O' + name.slice(2);
+const bubbleColors=['#E6E6FA','#D8BFD8','#F0F8FF','#DDA0DD','#DA70D6','#9370DB'];
+const bubbles=[]; const bubbleCount=35;
+let width=window.innerWidth, height=window.innerHeight;
+for(let i=0;i<bubbleCount;i++){
+  let b=document.createElement('div'); b.classList.add('bubble');
+  let size=Math.random()*60+20;
+  b.style.width=size+'px'; b.style.height=size+'px';
+  b.style.left=Math.random()*width+'px'; b.style.top=Math.random()*height+'px';
+  b.style.background=bubbleColors[Math.floor(Math.random()*bubbleColors.length)];
+  document.body.appendChild(b);
+  bubbles.push({el:b,x:parseFloat(b.style.left),y:parseFloat(b.style.top),dx:(Math.random()-0.5)*0.6,dy:-Math.random()*0.8-0.2});
 }
-
-async function fetchCheckinData(){
-  try{
-    tableBody.innerHTML=`<tr><td colspan="5" class="text-center text-muted">資料更新中...</td></tr>`;
-    const res = await fetch(WEB_APP_URL);
-    const data = await res.json();
-    if(!data||data.length===0){
-      tableBody.innerHTML=`<tr><td colspan="5" class="text-center text-muted">目前尚無報名資料</td></tr>`;
-      statsEl.textContent='';
-      filteredCountEl.textContent='';
-      return;
-    }
-    tableBody.innerHTML='';
-    data.forEach((p,i)=>{
-      if(!p.name) return;
-      const row=document.createElement('tr');
-      row.innerHTML=`<td>${i+1}</td>
-      <td>${maskName(p.name)}</td>
-      <td>${p.department||''}</td>
-      <td>${p.unit||''}</td>
-      <td>${p.remark||''}</td>`;
-      tableBody.appendChild(row);
-    });
-    statsEl.textContent=`總報名人數：${data.length}`;
-    updateFilteredCountAndReindex();
-  }catch(err){
-    console.error(err);
-    tableBody.innerHTML=`<tr><td colspan="5" class="text-danger">⚠️ 資料載入失敗</td></tr>`;
-    filteredCountEl.textContent='';
-  }
-}
-
-function columnFilter(colIndex,value){
-  const rows=tableBody.getElementsByTagName('tr');
-  const filter=value.toLowerCase();
-  for(let row of rows){
-    const cell=row.cells[colIndex]?.textContent.toLowerCase()||'';
-    row.style.display=cell.includes(filter)?'':'none';
-  }
-  updateFilteredCountAndReindex();
-}
-
-function filterTable(){
-  const filter=document.getElementById('globalSearch').value.toLowerCase();
-  const rows=tableBody.getElementsByTagName('tr');
-  for(let row of rows){
-    const text=row.textContent.toLowerCase();
-    row.style.display=text.includes(filter)?'':'none';
-  }
-  updateFilteredCountAndReindex();
-}
-
-function updateFilteredCountAndReindex(){
-  const rows=tableBody.getElementsByTagName('tr');
-  let count=0, seq=1;
-  for(let row of rows){
-    if(row.style.display!=='none'){
-      row.cells[0].textContent=seq++;
-      count++;
-    }
-  }
-  filteredCountEl.textContent=`目前符合條件的人數：${count}`;
-}
-
-fetchCheckinData();
+function animateBubbles(){ bubbles.forEach(b=>{ b.x+=b.dx;b.y+=b.dy; if(b.y+parseFloat(b.el.style.height)<0){b.y=height;b.x=Math.random()*width;} if(b.x<0)b.x=width;if(b.x>width)b.x=0; b.el.style.left=b.x+'px';b.el.style.top=b.y+'px'; }); requestAnimationFrame(animateBubbles); }
+animateBubbles();
+window.addEventListener('resize',()=>{width=window.innerWidth;height=window.innerHeight;});
 </script>
+
+<!-- 卡片淡入（頁面載入後依序呈現） -->
+<script>
+const cards = document.querySelectorAll('.card-custom');
+window.addEventListener('load', () => {
+    cards.forEach((card, index) => {
+        setTimeout(() => {
+            card.classList.add('visible');
+        }, index * 200); // 每個卡片延遲 200ms
+    });
+});
+</script>
+
+<!-- navbar active -->
+<script>
+const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+navLinks.forEach(link=>{
+    link.addEventListener('click', ()=>{
+        navLinks.forEach(l=>l.classList.remove('active'));
+        link.classList.add('active');
+    });
+});
+</script>
+
 </body>
 </html>
+
