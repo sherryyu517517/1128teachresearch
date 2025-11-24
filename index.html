@@ -84,6 +84,27 @@ body {
 /* Footer */
 .footer { background-color: #F3E8FF; color: #4B0082; padding: 15px 0; text-align:center; border-top:1px solid #E0D0F0; }
 
+/* 閃爍箭頭動畫 */
+.nav-link-arrow {
+  position: relative;
+  padding-left: 25px; /* 留出箭頭空間 */
+}
+.nav-link-arrow::before {
+  content: '➤'; /* 箭頭符號 */
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #FF3333;
+  font-size: 1.2rem;
+  animation: arrow-flash 1s infinite alternate;
+}
+
+@keyframes arrow-flash {
+  0% { opacity: 1; transform: translateY(-50%) translateX(0); }
+  50% { opacity: 0.2; transform: translateY(-50%) translateX(5px); }
+  100% { opacity: 1; transform: translateY(-50%) translateX(0); }
+}
 </style>
 </head>
 <body>
@@ -93,7 +114,6 @@ body {
 <div class="container">
     <a class="navbar-brand" href="index.html">🎉 佳里奇美醫院 114年度 </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <!-- Bootstrap Icons SVG，白色、加粗線條 -->
         <svg xmlns="http://www.w3.org/2000/svg" fill="white" stroke="white" stroke-width="1" class="bi bi-list" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M2.5 12.5a.5.5 0 010-1h11a.5.5 0 010 1h-11zm0-4a.5.5 0 010-1h11a.5.5 0 010 1h-11zm0-4a.5.5 0 010-1h11a.5.5 0 010 1h-11z"/>
         </svg>
@@ -103,7 +123,7 @@ body {
             <li class="nav-item"><a class="nav-link active" href="index.html">活動資訊</a></li>
             <li class="nav-item"><a class="nav-link" href="agenda.html">活動流程</a></li>
             <li class="nav-item"><a class="nav-link" href="register.html">報名名單</a></li>
-            <li class="nav-item"><a class="nav-link" href="checkin-終版-F.html">簽到入場</a></li>
+            <li class="nav-item"><a class="nav-link nav-link-arrow" href="checkin-終版-F.html">簽到入場</a></li>
             <li class="nav-item"><a class="nav-link" href="honors.html">優良暨傑出教師芳名錄</a></li>
             <li class="nav-item"><a class="nav-link" href="https://forms.gle/DBdC3ZScynWDzEps5" target="_blank">滿意度回饋</a></li>
         </ul>
@@ -170,47 +190,5 @@ body {
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- 背景氣泡動畫 -->
-<script>
-const bubbleColors=['#E6E6FA','#D8BFD8','#F0F8FF','#DDA0DD','#DA70D6','#9370DB'];
-const bubbles=[]; const bubbleCount=35;
-let width=window.innerWidth, height=window.innerHeight;
-for(let i=0;i<bubbleCount;i++){
-  let b=document.createElement('div'); b.classList.add('bubble');
-  let size=Math.random()*60+20;
-  b.style.width=size+'px'; b.style.height=size+'px';
-  b.style.left=Math.random()*width+'px'; b.style.top=Math.random()*height+'px';
-  b.style.background=bubbleColors[Math.floor(Math.random()*bubbleColors.length)];
-  document.body.appendChild(b);
-  bubbles.push({el:b,x:parseFloat(b.style.left),y:parseFloat(b.style.top),dx:(Math.random()-0.5)*0.6,dy:-Math.random()*0.8-0.2});
-}
-function animateBubbles(){ bubbles.forEach(b=>{ b.x+=b.dx;b.y+=b.dy; if(b.y+parseFloat(b.el.style.height)<0){b.y=height;b.x=Math.random()*width;} if(b.x<0)b.x=width;if(b.x>width)b.x=0; b.el.style.left=b.x+'px';b.el.style.top=b.y+'px'; }); requestAnimationFrame(animateBubbles); }
-animateBubbles();
-window.addEventListener('resize',()=>{width=window.innerWidth;height=window.innerHeight;});
-</script>
-
-<!-- 卡片滾動淡入動畫 -->
-<script>
-const cards = document.querySelectorAll('.card-custom');
-function revealCards() {
-    const triggerBottom = window.innerHeight * 0.85;
-    cards.forEach(card => { const cardTop = card.getBoundingClientRect().top; if(cardTop < triggerBottom) card.classList.add('visible'); });
-}
-window.addEventListener('scroll', revealCards);
-window.addEventListener('load', revealCards);
-</script>
-
-<!-- 點擊縮回動畫與 active 顯示 -->
-<script>
-const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-navLinks.forEach(link=>{ link.addEventListener('click', ()=>{ navLinks.forEach(l=>l.classList.remove('active')); link.classList.add('active'); }); });
-</script>
-
 </body>
 </html>
-
-
-
-
-
