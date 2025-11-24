@@ -37,9 +37,36 @@ h2 { color:#4B0082; font-weight:600; text-shadow:1px 1px 3px rgba(0,0,0,0.2); }
 
 footer { text-align:center; color:#555; background: rgba(255,255,255,0.1); padding:15px; font-size:0.95rem; margin-top:60px; }
 
+/* 手機版優化 */
 @media (max-width: 768px) {
-  .table-responsive { overflow-x: auto; }
-  .filter-input { font-size: 0.75rem; }
+  .filter-input { font-size: 0.75rem; width: 100%; }
+
+  /* 表格改成卡片式 */
+  #checkinTable thead { display: none; } /* 隱藏表頭 */
+  #checkinTable tbody tr {
+    display: block;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgba(255,255,255,0.95);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  #checkinTable tbody td {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+  }
+  #checkinTable tbody td:first-child { text-align: left; }
+
+  /* 用 data-label 顯示欄位名稱 */
+  #checkinTable tbody td:nth-child(1)::before { content: "序號"; font-weight:600; margin-right:5px; }
+  #checkinTable tbody td:nth-child(2)::before { content: "姓名"; font-weight:600; margin-right:5px; }
+  #checkinTable tbody td:nth-child(3)::before { content: "單位"; font-weight:600; margin-right:5px; }
+  #checkinTable tbody td:nth-child(4)::before { content: "職稱"; font-weight:600; margin-right:5px; }
+  #checkinTable tbody td:nth-child(5)::before { content: "備註"; font-weight:600; margin-right:5px; }
+
+  .table-responsive { overflow-x: hidden; }
 }
 </style>
 </head>
@@ -67,9 +94,9 @@ footer { text-align:center; color:#555; background: rgba(255,255,255,0.1); paddi
 <main class="container" style="padding-top:100px;">
 <div class="text-center mb-2">
   <h2>✅ 已報名與會人員</h2>
-  <div class="d-flex justify-content-center align-items-center gap-2 mb-3">
+  <div class="d-flex justify-content-center align-items-center gap-2 mb-3 flex-wrap">
     <input id="globalSearch" type="text" class="form-control w-50" placeholder="🔍 全欄搜尋（姓名、科別、單位、備註）">
-    <button class="refresh-btn" onclick="filterTable()">🔍 搜尋</button>
+    <button class="refresh-btn btn btn-secondary" onclick="filterTable()">🔍 搜尋</button>
   </div>
 </div>
 
@@ -180,4 +207,3 @@ fetchCheckinData();
 </script>
 </body>
 </html>
-
