@@ -1,100 +1,220 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>佳里奇美醫院 114年度 主治醫師暨臨床教師餐敘</title>
+<meta charset="UTF-8">
 
-    <style>
-        body {
-            font-family: "Noto Sans TC", sans-serif;
-            margin: 0;
-            background: #f7f7f7;
-            color: #333;
+<!-- 關閉 RWD 行為 (固定寬度排版) -->
+<meta name="viewport" content="width=1200">
 
-            /* ★ 強制所有裝置都用同樣寬度排版 ★ */
-            width: 100%;
-            min-width: 900px; /* 手機也會強制以 900px 寬度排版 */
-        }
+<title>佳里奇美醫院 114年度 主治醫師暨臨床教師餐敘</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&display=swap" rel="stylesheet">
 
-        header {
-            background: #005bab;
-            color: white;
-            padding: 20px 10px;
-            text-align: center;
-        }
+<style>
+/* ★★★ 強制所有裝置寬度固定為 1200px — 手機也不重排 ★★★ */
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    margin:0; padding:0;
+    background: linear-gradient(135deg,#E6E6FA,#FFFFFF);
+    width: 1200px;
+    margin: 0 auto;
+    overflow-x: hidden;
+    position: relative;
+}
 
-        .main-title {
-            font-size: 28px;
-            line-height: 1.4;
-            font-weight: 700;
-            display: inline-block;
-            white-space: nowrap; /* ★ 防止手機自動換行 ★ */
-        }
+/* Bootstrap container 也統一固定寬度 */
+.container {
+    max-width: 1200px !important;
+}
 
-        .title-break {
-            display: block;
-        }
+/* ★★★ 移除所有 RWD 媒體查詢效果 ★★★ */
+* {
+    max-width: 1200px !important;
+}
 
-        .sub-info {
-            font-size: 15px;
-            margin-top: 5px;
-            opacity: 0.9;
-        }
+/*********************************
+   導覽列
+**********************************/
+.navbar {
+    background: linear-gradient(90deg, rgba(75,0,130,0.85), rgba(147,112,219,0.85));
+    backdrop-filter: blur(10px);
+    width: 1200px;
+}
+.navbar-brand, .nav-link { color: #FFFFFF !important; font-weight: 700; }
 
-        /* ★ 內容區寬度完全固定，不會因手機縮窄 ★ */
-        .section {
-            width: 900px;
-            margin: 25px auto;
-            background: #ffffff;
-            padding: 22px;
-            border-radius: 14px;
-            box-shadow: 0px 3px 10px rgba(0,0,0,0.08);
-        }
+.navbar-nav .nav-item { margin: 0 8px; }
+.navbar-nav .nav-link { transition: transform 0.2s ease; }
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    transform: scale(1.2);
+}
 
-        h2 {
-            border-left: 6px solid #005bab;
-            padding-left: 10px;
-            margin-top: 0;
-        }
+/* ★手機不再折疊為漢堡選單 — 保持桌機排版 */
+.navbar-toggler { display: none !important; }
+.navbar-collapse { display: block !important; }
 
-        .event-logo {
-            width: 130px;
-            height: auto;
-            display: block;
-            margin: 0 auto 10px auto;
-        }
+/*********************************
+   HERO 區
+**********************************/
+.hero {
+    background: linear-gradient(rgba(75,0,130,0.7), rgba(147,112,219,0.6)), 
+        url('https://images.unsplash.com/photo-1564865881850-17f48f6f16ff?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+    color: #fff;
+    text-align: center;
+    padding: 120px 20px 80px 20px;
+    width: 1200px;
+}
 
-        /* ★ 移除所有 RWD，保持手機與電腦完全一致 ★ */
-    </style>
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    white-space: nowrap; /* 不換行 */
+}
+
+.hero p {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-top: 15px;
+}
+
+/*********************************
+   卡片
+**********************************/
+.card-custom {
+    background: #FFFFFF;
+    border-radius: 0;
+    padding: 20px;
+    margin-bottom: 30px;
+    border: 1px solid #DDD;
+}
+
+/* col-md-6 → 不再 RWD，固定左右兩欄 */
+.col-md-6 {
+    width: 50% !important;
+    float: left !important;
+}
+
+/*********************************
+   區塊標題
+**********************************/
+.section-title {
+    color: #6A0DAD;
+    font-weight: 700;
+}
+
+/*********************************
+   按鈕
+**********************************/
+.btn-custom {
+    background: linear-gradient(90deg, #4B0082, #9370DB);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 10px 25px;
+    transition: 0.3s;
+    display: inline-block;
+}
+.btn-custom:hover {
+    background: linear-gradient(90deg, #9370DB, #4B0082);
+    transform: scale(1.05);
+}
+
+/*********************************
+   Footer
+**********************************/
+.footer {
+    background-color: #F3E8FF;
+    color: #4B0082;
+    padding: 15px 0;
+    text-align: center;
+    border-top: 1px solid #E0D0F0;
+    width: 1200px;
+}
+</style>
 </head>
 
 <body>
 
-<header>
-    <div class="main-title">
-        佳里奇美醫院 114年度
-        <span class="title-break">主治醫師暨臨床教師餐敘</span>
+<!-- 導覽列 -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+<div class="container">
+    <a class="navbar-brand" href="index.html">🎉 佳里奇美醫院餐敘</a>
+
+    <div class="navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link active" href="index.html">活動資訊</a></li>
+            <li class="nav-item"><a class="nav-link" href="agenda.html">活動流程</a></li>
+            <li class="nav-item"><a class="nav-link" href="registration.html">報名名單</a></li>
+            <li class="nav-item"><a class="nav-link" href="checkin-終版-F.html">當日報到系統</a></li>
+            <li class="nav-item"><a class="nav-link" href="honors.html">優良暨傑出教師芳名錄</a></li>
+            <li class="nav-item"><a class="nav-link" href="https://forms.gle/DBdC3ZScynWDzEps5" target="_blank">滿意度回饋</a></li>
+        </ul>
     </div>
-    <div class="sub-info">主辦單位：佳里奇美醫院　|　協辦單位：台南市醫師公會</div>
-</header>
-
-<div class="section">
-    <img src="chimei-logo2.png" alt="Logo" class="event-logo">
-
-    <h2>活動資訊一覽</h2>
-    <p>📅 時間：2025 年 1 月 10 日（五） 18:30 入場</p>
-    <p>📍 地點：台南晶英酒店 3F</p>
-    <p>👥 參與對象：本院主治醫師、臨床教師及貴賓</p>
 </div>
+</nav>
 
-<div class="section">
-    <h2>報到系統</h2>
-    <p>🔗 <a href="checkin.html">前往報到頁面</a></p>
+<!-- Hero -->
+<section class="hero">
+    <h1>佳里奇美醫院 114年度 主治醫師暨臨床教師餐敘</h1>
+    <p>主辦單位：佳里奇美醫院 | 協辦單位：台南市醫師公會</p>
+</section>
 
-    <h2>滿意度調查</h2>
-    <p>📝 <a href="https://forms.gle/DBdC3ZScynWDzEps5" target="_blank">填寫 Google 表單</a></p>
-</div>
+<main class="container mt-5">
+
+    <!-- 活動資訊 -->
+    <section class="mb-5">
+        <h3 class="section-title mb-3">📅 活動資訊一覽</h3>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <section class="card-custom">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>日期：</strong> 114年11月28日 (五)</li>
+                        <li class="list-group-item"><strong>時間：</strong> 18:30 (18:00 開始報到)</li>
+                        <li class="list-group-item"><strong>主辦：</strong> 佳里奇美醫院</li>
+                        <li class="list-group-item"><strong>協辦：</strong> 台南市醫師公會</li>
+                    </ul>
+                </section>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <section class="card-custom">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>地點：</strong> 東東宴會式場-華平囍嫁館 (華平館)</li>
+                        <li class="list-group-item"><strong>地址：</strong> 台南市安平區華平路156號</li>
+                        <li class="list-group-item"><strong>聯絡窗口：</strong> 教學研究組</li>
+                        <li class="list-group-item"><strong>聯絡分機：</strong> 32985 / 32987</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <!-- 交通 -->
+    <section class="mb-5">
+        <h3 class="section-title mb-3">📍 交通與導航</h3>
+
+        <section class="card-custom">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>地點：</strong> 東東宴會式場-華平囍嫁館（台南市安平區華平路156號）</li>
+                <li class="list-group-item">
+                    <a href="https://www.google.com/maps?q=台南市安平區華平路156號"
+                       target="_blank" class="btn btn-custom mt-1">
+                       🚗 點擊前往 Google 地圖導航
+                    </a>
+                </li>
+                <li class="list-group-item">提醒：會場提供停車位，請依照現場指引停放車輛。</li>
+            </ul>
+        </section>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <span>© 佳里奇美醫院 教學研究組 版權所有</span>
+    </div>
+</footer>
 
 </body>
 </html>
