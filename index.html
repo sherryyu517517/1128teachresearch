@@ -77,11 +77,6 @@ body {
     font-weight: 700;
     text-shadow: 1px 1px 8px rgba(0,0,0,0.5);
 }
-.hero p {
-    font-size: 1.3rem;
-    font-weight: 500;
-    margin-top: 15px;
-}
 
 /* 主辦協辦排到最底部 */
 .hero-bottom-text {
@@ -96,7 +91,6 @@ body {
     .hero { padding: 80px 15px 50px 15px; }
     .hero h1 { font-size: 1.8rem; line-height: 1.3; }
     .hero-bottom-text { font-size: 0.95rem; margin-top: 20px; }
-    .hero p { font-size: 1rem; }
 }
 
 /* 卡片淡入 */
@@ -123,8 +117,24 @@ body {
 /* 標題 */
 .section-title {
     color:#6A0DAD; font-weight:700;
+    display:flex; align-items:center;
 }
 
+/* 小日曆圖示 */
+.section-title .calendar-icon {
+    display:inline-block;
+    width:28px;
+    height:28px;
+    background:#6A0DAD;
+    color:#fff;
+    font-size:14px;
+    line-height:28px;
+    text-align:center;
+    border-radius:4px;
+    margin-right:8px;
+}
+
+/* 列表線條 */
 .list-group-item { border:1px solid #DDD; }
 
 /* 按鈕 */
@@ -189,7 +199,10 @@ body {
 
 <!-- 活動資訊 -->
 <section class="mb-5">
-    <h3 class="section-title mb-3">📆 活動資訊一覽</h3>
+    <h3 class="section-title mb-3">
+        <span class="calendar-icon">28</span>
+        活動資訊一覽
+    </h3>
 
     <div class="row">
         <div class="col-md-6 mb-3">
@@ -307,8 +320,3 @@ navLinks.forEach(link=>{
 
 </body>
 </html>
-
-
-
-
-
