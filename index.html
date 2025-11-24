@@ -60,22 +60,15 @@ body {
 
 /* 手機版調整 */
 @media (max-width: 992px) {
-    .navbar-toggler { position: absolute; right: 15px; border: none; }
-    .navbar-toggler svg { width: 40px; height: 40px; fill: #FFFFFF; stroke: #FFFFFF; stroke-width: 1; }
-
-    /* 手機版箭頭置中、文字與其他選項對齊 */
-    .navbar-nav { text-align: center; }
-    .navbar-nav .nav-item { display: block; }
-
     .nav-link-arrow {
-        padding-left: 0; /* 移除額外 padding */
+        padding-left: 0; 
         display: inline-block;
         position: relative;
     }
     .nav-link-arrow::before {
-        left: -18px; /* 🔹箭頭緊貼「簽」字左側 */
+        left: -22px; /* 左移箭頭 */
         top: 50%;
-        transform: translateY(-50%);
+        transform: translateY(-50%); /* 不再有 X 偏移 */
         font-size: 1.2rem;
     }
 }
@@ -259,4 +252,5 @@ navLinks.forEach(link=>{
 
 </body>
 </html>
+
 
