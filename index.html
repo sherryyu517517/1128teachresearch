@@ -37,28 +37,16 @@ body {
 .navbar-nav .nav-link:hover { transform: scale(1.2); }
 .navbar-nav .nav-link.active { color: #FFD700 !important; }
 
-/* 手機版漢堡 icon */
-@media (max-width: 992px) {
-    .navbar-toggler { position: absolute; right: 15px; border: none; }
-    .navbar-toggler svg { width: 40px; height: 40px; fill: #FFFFFF; stroke: #FFFFFF; stroke-width: 1; }
-
-    /* 手機版箭頭貼近標題 */
-    .nav-link-arrow::before {
-        left: -18px !important;
-        font-size: 1.2rem !important;
-    }
-}
-
 /* ⭐ 紅色閃爍箭頭動畫 */
 .nav-link-arrow {
   position: relative;
-  padding-left: 22px; /* 電腦版箭頭靠近但不蓋字 */
+  padding-left: 22px; /* 電腦版箭頭靠近文字 */
 }
 
 .nav-link-arrow::before {
   content: "➤";
   position: absolute;
-  left: -10px; /* ⭐ 電腦版微左移，避免遮字 */
+  left: -10px; /* 電腦版微左移 */
   top: 50%;
   transform: translateY(-50%);
   color: #FF3333;
@@ -70,6 +58,26 @@ body {
   0% { opacity: 1; transform: translateY(-50%) translateX(0); }
   50% { opacity: 0.2; transform: translateY(-50%) translateX(5px); }
   100% { opacity: 1; transform: translateY(-50%) translateX(0); }
+}
+
+/* 手機版設定 */
+@media (max-width: 992px) {
+    .navbar-toggler { position: absolute; right: 15px; border: none; }
+    .navbar-toggler svg { width: 40px; height: 40px; fill: #FFFFFF; stroke: #FFFFFF; stroke-width: 1; }
+
+    /* 手機版箭頭置中在文字右側 */
+    .navbar-nav { text-align: center; width: 100%; }
+    .navbar-nav .nav-item { margin: 8px 0; }
+    .nav-link-arrow {
+        padding-left: 0;
+        display: inline-block;
+    }
+    .nav-link-arrow::before {
+        left: auto;
+        right: -22px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
 }
 
 /* Hero Banner */
@@ -120,7 +128,7 @@ body {
             <li class="nav-item"><a class="nav-link" href="agenda.html">活動流程</a></li>
             <li class="nav-item"><a class="nav-link" href="register.html">報名名單</a></li>
 
-            <!-- ⭐ 加入紅色閃爍箭頭 -->
+            <!-- ⭐ 紅色閃爍箭頭 -->
             <li class="nav-item">
                 <a class="nav-link nav-link-arrow" href="checkin-終版-F.html">簽到入場</a>
             </li>
