@@ -39,46 +39,40 @@ body {
 
 /* ⭐ 紅色閃爍箭頭動畫 */
 .nav-link-arrow {
-  position: relative;
-  padding-left: 22px; /* 電腦版箭頭靠近文字 */
+    position: relative;
+    padding-left: 22px; /* 電腦版箭頭靠近但不蓋字 */
 }
 .nav-link-arrow::before {
-  content: "➤";
-  position: absolute;
-  left: -12px; /* 電腦版微左移 */
-  top: 50%;
-  transform: translateY(-50%);
-  color: #FF3333;
-  font-size: 1.15rem;
-  animation: arrow-flash 1s infinite alternate;
+    content: "➤";
+    position: absolute;
+    left: -10px; /* 電腦版微左移，避免遮字 */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #FF3333;
+    font-size: 1.15rem;
+    animation: arrow-flash 1s infinite alternate;
 }
-
 @keyframes arrow-flash {
-  0% { opacity: 1; transform: translateY(-50%) translateX(0); }
-  50% { opacity: 0.2; transform: translateY(-50%) translateX(5px); }
-  100% { opacity: 1; transform: translateY(-50%) translateX(0); }
+    0% { opacity: 1; transform: translateY(-50%) translateX(0); }
+    50% { opacity: 0.2; transform: translateY(-50%) translateX(5px); }
+    100% { opacity: 1; transform: translateY(-50%) translateX(0); }
 }
 
-/* 手機版 */
+/* 手機版調整 */
 @media (max-width: 992px) {
     .navbar-toggler { position: absolute; right: 15px; border: none; }
     .navbar-toggler svg { width: 40px; height: 40px; fill: #FFFFFF; stroke: #FFFFFF; stroke-width: 1; }
 
-    /* 手機版選單置中 */
-    .navbar-nav {
-        text-align: center;
-        width: 100%;
-        justify-content: center !important;
-    }
-    .navbar-nav .nav-item {
-        margin: 8px 0;
-    }
-    /* 手機版箭頭靠文字左側 */
+    /* 手機版箭頭置中、文字與其他選項對齊 */
+    .navbar-nav { text-align: center; }
+    .navbar-nav .nav-item { display: block; }
     .nav-link-arrow {
-        padding-left: 20px; /* 緊貼文字左側 */
+        padding-left: 0; /* 移除額外 padding 置中 */
     }
     .nav-link-arrow::before {
-        left: -18px; /* 往左移一點 */
+        left: 50%; /* 基準在文字中間 */
+        transform: translateX(-35px) translateY(-50%); /* 往左微移貼在「簽」字旁 */
+        font-size: 1.2rem;
     }
 }
 
@@ -130,7 +124,7 @@ body {
             <li class="nav-item"><a class="nav-link" href="agenda.html">活動流程</a></li>
             <li class="nav-item"><a class="nav-link" href="register.html">報名名單</a></li>
 
-            <!-- ⭐ 紅色閃爍箭頭 -->
+            <!-- ⭐ 手機版箭頭貼文字左側 -->
             <li class="nav-item">
                 <a class="nav-link nav-link-arrow" href="checkin-終版-F.html">簽到入場</a>
             </li>
