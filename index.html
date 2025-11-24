@@ -63,24 +63,26 @@ body {
     animation: arrow-flash 1s infinite alternate;
 }
 
-/* 手機版：箭頭移到右邊，並向左指：⇦ */
+/* 手機版：箭頭靠近文字右邊，實心紅色，閃爍 */
 @media (max-width: 768px) {
     .nav-link-arrow {
         padding-left: 0;
-        padding-right: 22px;
+        padding-right: 20px; /* 右邊留空間給箭頭 */
     }
     .nav-link-arrow::before {
-        content: "⇦";
+        content: "➤"; /* 跟電腦版一樣實心箭頭 */
         left: auto;
         right: -4px;
-        font-size: 1.3rem;
+         font-size: 1.15rem;
         transform: translateY(-50%);
+        color: #FF3333;
+        animation: arrow-flash 1s infinite alternate;
     }
 }
 
 @keyframes arrow-flash {
     0% { opacity: 1; transform: translateY(-50%) translateX(0); }
-    50% { opacity: 0.2; transform: translateY(-50%) translateX(5px); }
+    50% { opacity: 0.2; transform: translateY(-50%) translateX(3px); }
     100% { opacity: 1; transform: translateY(-50%) translateX(0); }
 }
 
