@@ -63,15 +63,18 @@ body {
     .navbar-toggler { position: absolute; right: 15px; border: none; }
     .navbar-toggler svg { width: 40px; height: 40px; fill: #FFFFFF; stroke: #FFFFFF; stroke-width: 1; }
 
-    /* 手機版箭頭置中、文字與其他選項對齊 */
     .navbar-nav { text-align: center; }
     .navbar-nav .nav-item { display: block; }
+
     .nav-link-arrow {
-        padding-left: 0; /* 移除額外 padding 置中 */
+        padding-left: 0; /* 移除額外 padding */
+        display: inline-block;
+        position: relative;
     }
     .nav-link-arrow::before {
-        left: 50%; /* 基準在文字中間 */
-        transform: translateX(-50px) translateY(-50%); /* 往左微移貼在「簽」字旁 */
+        left: -18px; /* 🔹箭頭緊貼「簽」字左側 */
+        top: 50%;
+        transform: translateY(-50%);
         font-size: 1.2rem;
     }
 }
@@ -251,4 +254,3 @@ navLinks.forEach(link=>{
 
 </body>
 </html>
-
