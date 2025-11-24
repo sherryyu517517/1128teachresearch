@@ -24,7 +24,7 @@ h2 { color:#4B0082; font-weight:600; text-shadow:1px 1px 3px rgba(0,0,0,0.2); }
 
 #filteredCount { font-size:0.95rem; font-weight:500; margin-bottom:10px; text-align:center; color:#4B0082; }
 
-.table-responsive { max-height: 500px; overflow-y: auto; position: relative; }
+.table-responsive { max-height: 500px; overflow: auto; position: relative; }
 .table-responsive table { width: max-content; min-width: 100%; table-layout: auto; }
 
 #checkinTable thead th { position: sticky; top: 0; z-index: 2; background-color: #4B0082 !important; color: #fff !important; }
@@ -32,24 +32,36 @@ h2 { color:#4B0082; font-weight:600; text-shadow:1px 1px 3px rgba(0,0,0,0.2); }
 #checkinTable tbody tr:nth-child(even) { background-color: #F3E8FF; }
 #checkinTable tbody tr:nth-child(odd) { background-color: #FFFFFF; }
 
-/* 序號欄垂直置中 */
+/* 序號欄垂直置中並固定 */
 #checkinTable th:first-child,
-#checkinTable td:first-child { vertical-align: middle !important; text-align: center !important; white-space: nowrap; width: 60px; }
+#checkinTable td:first-child {
+    vertical-align: middle !important;
+    text-align: center !important;
+    white-space: nowrap;
+    width: 60px;
+    position: sticky;
+    left: 0;
+    background-color: #fff;
+    z-index: 4;
+}
 
 /* 姓名欄垂直置中並固定 */
 #checkinTable th:nth-child(2),
 #checkinTable td:nth-child(2) {
     vertical-align: middle !important;
+    text-align: center;
     position: sticky;
     left: 60px; /* 序號欄寬度 */
     background-color: #fff;
     z-index: 3;
-    text-align: center;
 }
 
-/* 固定表頭優先層級更高 */
+/* 表頭姓名欄更高層級 */
 #checkinTable thead th:nth-child(2) {
-    z-index: 4;
+    z-index: 5;
+}
+#checkinTable thead th:first-child {
+    z-index: 6;
 }
 
 footer { text-align:center; color:#555; background: rgba(255,255,255,0.1); padding:15px; font-size:0.95rem; margin-top:60px; }
