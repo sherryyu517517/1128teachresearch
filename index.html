@@ -58,7 +58,7 @@ body {
 /* active 狀態亮黃色 */
 .navbar-nav .nav-link.active { color: #FFD700 !important; }
 
-/* 手機：禁用滑動放大，active 亮黃 */
+/* 手機版樣式 */
 @media (max-width: 992px) {
     .navbar-nav .nav-link {
         display: block;
@@ -67,6 +67,16 @@ body {
         transform: none !important;
     }
     .navbar-nav .nav-link.active { color: #FFD700 !important; }
+
+    /* 漢堡圖示調整 */
+    .navbar-toggler {
+        right: 10px;       /* 距螢幕右邊 10px */
+        position: absolute; /* 固定在右上角 */
+    }
+    .navbar-toggler-icon {
+        width: 30px;       /* 增大圖示寬 */
+        height: 30px;      /* 增大圖示高 */
+    }
 }
 
 /* Hero Banner */
