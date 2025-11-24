@@ -32,9 +32,16 @@ body {
 }
 .navbar-brand { color: #FFFFFF !important; font-weight: 700; }
 
+/* 桌機版：整個分頁往右移動 */
+@media (min-width: 992px) {
+    .navbar-nav {
+        margin-left: 20px; /* 調整整個分頁往右 */
+    }
+}
+
 /* 分頁水平間距 */
 .navbar-nav .nav-item {
-    margin-left: 10px;   /* 調整桌機分頁距離 */
+    margin-left: 10px;   /* 桌機分頁間距 */
     margin-right: 10px;
 }
 
@@ -117,7 +124,7 @@ body {
 .section-title .calendar-icon {
     display:inline-block;
     width:40px; height:40px;
-    background:#ADD8E6; /* 淺藍色 */
+    background:#ADD8E6;
     color:#fff;
     font-weight:700;
     border-radius:6px;
@@ -300,4 +307,3 @@ navLinks.forEach(link=>{
 
 </body>
 </html>
-
