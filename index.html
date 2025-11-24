@@ -72,7 +72,7 @@ body {
         position: relative;
     }
     .nav-link-arrow::before {
-        left: -18px; /* 🔹箭頭緊貼「簽」字左側 */
+        left: -22px; /* 🔹箭頭緊貼「簽」字左側 */
         top: 50%;
         transform: translateY(-50%);
         font-size: 1.2rem;
@@ -113,7 +113,6 @@ body {
 <!-- 導覽列 -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 <div class="container">
-    <!-- logo 圖片，根目錄 -->
     <a class="navbar-brand" href="index.html">
         <img src="chimei-logo-green.png" alt="奇美醫院" style="height:36px; margin-right:8px;">
         佳里奇美醫院 114年度
@@ -131,7 +130,6 @@ body {
             <li class="nav-item"><a class="nav-link" href="agenda.html">活動流程</a></li>
             <li class="nav-item"><a class="nav-link" href="register.html">報名名單</a></li>
 
-            <!-- ⭐ 手機版箭頭貼文字左側 -->
             <li class="nav-item">
                 <a class="nav-link nav-link-arrow" href="checkin-終版-F.html">簽到入場</a>
             </li>
@@ -231,18 +229,16 @@ animateBubbles();
 window.addEventListener('resize',()=>{width=window.innerWidth;height=window.innerHeight;});
 </script>
 
-<!-- 卡片淡入 -->
+<!-- 卡片淡入（頁面載入後依序呈現） -->
 <script>
 const cards = document.querySelectorAll('.card-custom');
-function revealCards() {
-    const triggerBottom = window.innerHeight * 0.85;
-    cards.forEach(card => {
-        const cardTop = card.getBoundingClientRect().top;
-        if(cardTop < triggerBottom) card.classList.add('visible');
+window.addEventListener('load', () => {
+    cards.forEach((card, index) => {
+        setTimeout(() => {
+            card.classList.add('visible');
+        }, index * 200); // 每個卡片延遲 200ms
     });
-}
-window.addEventListener('scroll', revealCards);
-window.addEventListener('load', revealCards);
+});
 </script>
 
 <!-- navbar active -->
@@ -258,6 +254,3 @@ navLinks.forEach(link=>{
 
 </body>
 </html>
-
-
-
