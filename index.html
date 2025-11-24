@@ -34,13 +34,13 @@ body {
 
 /* 分頁水平間距 */
 .navbar-nav .nav-item {
-    margin-left: 5px;   
+    margin-left: 5px;   /* 調整桌機分頁距離 */
     margin-right: 5px;
 }
 
 /* 分頁文字及效果 */
 .navbar-nav .nav-link {
-    color: #FFFFFF !important; 
+    color: #FFFFFF !important; /* 初始白色 */
     font-weight: 700;
     transition: transform 0.2s ease, font-size 0.2s ease, color 0.3s ease;
 }
@@ -56,33 +56,47 @@ body {
     color: #FFD700 !important;
 }
 
-/* 手機版下拉選單調整 & 從右滑入動畫 */
+/* 手機：禁用滑動放大，active 亮黃 */
 @media (max-width: 992px) {
+    .navbar-nav .nav-link {
+        display: block;
+        text-align: center;
+        margin: 5px 0;
+        transform: none !important;
+    }
+    .navbar-nav .nav-link.active { color: #FFD700 !important; }
+
+    /* 手機版選單右滑樣式 */
     .navbar-collapse {
         position: fixed;
-        top: 56px; 
-        right: 0;
-        width: 250px; /* 選單寬度 */
-        max-width: 80%;
-        height: 100vh;
+        top: 0;
+        right: -100%;
+        width: 260px;
+        height: 100%;
         background: linear-gradient(90deg, rgba(75,0,130,0.95), rgba(147,112,219,0.95));
-        padding-top: 20px;
-        transform: translateX(100%);
-        transition: transform 0.35s ease;
+        padding-top: 60px;
+        transition: right 0.35s ease;
         z-index: 999;
     }
     .navbar-collapse.show {
-        transform: translateX(0);
+        right: 0;
     }
-    .navbar-nav .nav-link {
-        display: block;
-        text-align: left;
-        margin: 10px 15px;
-        transform: none !important;
-        color: #fff !important;
+
+    /* 遮罩 */
+    .overlay {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.35s ease;
+        z-index: 998;
     }
-    .navbar-nav .nav-link.active { color: #FFD700 !important; }
-    .navbar-toggler { z-index: 1000; }
+    .overlay.show {
+        opacity: 1;
+        visibility: visible;
+    }
 }
 
 /* Hero Banner */
@@ -135,7 +149,7 @@ body {
 .section-title .calendar-icon {
     display:inline-block;
     width:40px; height:40px;
-    background:#0077FF; 
+    background:#ADD8E6; /* 淺藍色 */
     color:#fff;
     font-weight:700;
     border-radius:6px;
@@ -177,6 +191,9 @@ body {
 </style>
 </head>
 <body>
+
+<!-- 手機選單遮罩 -->
+<div class="overlay" id="menuOverlay"></div>
 
 <!-- 導覽列 -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -223,9 +240,8 @@ body {
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><strong>日期：</strong> 114年11月28日 (五)</li>
                     <li class="list-group-item"><strong>時間：</strong> 18:30 (18:00 開始報到)</li>
-                    <li class="list-group-item"><strong>地點：</strong> 東東宴會式場-華平囍嫁館
-                    <li class="list-group-item"><strong>廳別：</strong> <span style="color:#0077FF; font-weight:600;">2F東嬿廳</span>
-                    </li>
+                    <li class="list-group-item"><strong>地點：</strong> 東東宴會式場-華平囍嫁館</li>
+                    <li class="list-group-item"><strong>廳別：</strong> <span style="color:#0077FF; font-weight:600;">2F東嬿廳</span></li>
                 </ul>
             </section>
         </div>
@@ -306,25 +322,31 @@ window.addEventListener('scroll', revealCards);
 window.addEventListener('load', revealCards);
 </script>
 
-<!-- 手機版下拉滑入動畫 -->
+<!-- 漢堡選單與遮罩控制 -->
 <script>
 const toggler = document.querySelector('.navbar-toggler');
 const collapse = document.getElementById('navbarNav');
+const overlay = document.getElementById('menuOverlay');
 
 toggler.addEventListener('click', ()=>{
     collapse.classList.toggle('show');
+    overlay.classList.toggle('show');
 });
-</script>
 
-<!-- 點擊縮回動畫與 active 顯示 -->
-<script>
+// 點擊遮罩關閉選單
+overlay.addEventListener('click', ()=>{
+    collapse.classList.remove('show');
+    overlay.classList.remove('show');
+});
+
+// 點選選單選項後自動關閉
 const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
 navLinks.forEach(link=>{
     link.addEventListener('click', ()=>{
         navLinks.forEach(l=>l.classList.remove('active'));
         link.classList.add('active');
-        // 點選後手機選單自動關閉
-        if(collapse.classList.contains('show')) collapse.classList.remove('show');
+        collapse.classList.remove('show');
+        overlay.classList.remove('show');
     });
 });
 </script>
