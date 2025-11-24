@@ -66,10 +66,16 @@ body {
     /* 手機版箭頭置中、文字與其他選項對齊 */
     .navbar-nav { text-align: center; }
     .navbar-nav .nav-item { display: block; }
-    .nav-link-arrow { padding-left: 0; }
+
+    .nav-link-arrow {
+        padding-left: 0; /* 移除額外 padding */
+        display: inline-block;
+        position: relative;
+    }
     .nav-link-arrow::before {
-        left: 50%;
-        transform: translateX(-42px) translateY(-50%); /* 微調箭頭靠近「簽」字旁 */
+        left: -18px; /* 🔹箭頭緊貼「簽」字左側 */
+        top: 50%;
+        transform: translateY(-50%);
         font-size: 1.2rem;
     }
 }
@@ -253,3 +259,4 @@ navLinks.forEach(link=>{
 
 </body>
 </html>
+
