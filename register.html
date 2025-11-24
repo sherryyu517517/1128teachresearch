@@ -32,30 +32,24 @@ h2 { color:#4B0082; font-weight:600; text-shadow:1px 1px 3px rgba(0,0,0,0.2); }
 #checkinTable tbody tr:nth-child(even) { background-color: #F3E8FF; }
 #checkinTable tbody tr:nth-child(odd) { background-color: #FFFFFF; }
 
+/* 序號欄垂直置中 */
 #checkinTable th:first-child,
-#checkinTable td:first-child {
-  vertical-align: middle !important;
-  text-align: center !important;
-  white-space: nowrap;
-  width: 60px;
-}
+#checkinTable td:first-child { vertical-align: middle !important; text-align: center !important; white-space: nowrap; width: 60px; }
 
-/* 姓名欄固定與垂直置中 */
+/* 姓名欄垂直置中並固定 */
 #checkinTable th:nth-child(2),
 #checkinTable td:nth-child(2) {
-  position: sticky;
-  left: 60px;
-  background-color: #fff;
-  z-index: 3;
-  vertical-align: middle !important;
-  text-align: center !important;
-  border-right: 1px solid rgba(0,0,0,0.1);
+    vertical-align: middle !important;
+    position: sticky;
+    left: 60px; /* 序號欄寬度 */
+    background-color: #fff;
+    z-index: 3;
+    text-align: center;
 }
 
-#checkinTable th:first-child {
-  background-color: #fff;
-  z-index: 4;
-  border-right: 1px solid rgba(0,0,0,0.1);
+/* 固定表頭優先層級更高 */
+#checkinTable thead th:nth-child(2) {
+    z-index: 4;
 }
 
 footer { text-align:center; color:#555; background: rgba(255,255,255,0.1); padding:15px; font-size:0.95rem; margin-top:60px; }
