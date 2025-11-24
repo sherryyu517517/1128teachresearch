@@ -8,10 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-:root {
-    --nav-offset: 50px; /* 桌機版分頁整列右移，可自行調整 */
-}
-
 body {
     font-family: 'Noto Sans TC', sans-serif;
     margin:0; padding:0;
@@ -36,13 +32,11 @@ body {
 }
 .navbar-brand { color: #FFFFFF !important; font-weight: 700; }
 
-/* 桌機版分頁整列右移 */
-@media (min-width: 992px) {
-    .navbar-collapse { padding-left: var(--nav-offset); }
-}
-
 /* 分頁水平間距 */
-.navbar-nav .nav-item { margin-left: 10px; margin-right: 10px; }
+.navbar-nav .nav-item {
+    margin-left: 16px;   /* 調整桌機分頁距離 */
+    margin-right: 16px;
+}
 
 /* 分頁文字及效果 */
 .navbar-nav .nav-link {
@@ -53,10 +47,14 @@ body {
 
 /* 桌機滑過放大 */
 .navbar-nav .nav-link:hover,
-.navbar-nav .nav-link:focus { transform: scale(1.2); }
+.navbar-nav .nav-link:focus {
+    transform: scale(1.2);
+}
 
 /* active 狀態亮黃色 */
-.navbar-nav .nav-link.active { color: #FFD700 !important; }
+.navbar-nav .nav-link.active {
+    color: #FFD700 !important;
+}
 
 /* 手機：禁用滑動放大，active 亮黃 */
 @media (max-width: 992px) {
@@ -119,7 +117,7 @@ body {
 .section-title .calendar-icon {
     display:inline-block;
     width:40px; height:40px;
-    background:#ADD8E6;
+    background:#ADD8E6; /* 淺藍色 */
     color:#fff;
     font-weight:700;
     border-radius:6px;
@@ -145,7 +143,10 @@ body {
     transition:0.3s;
     display:inline-block;
 }
-.btn-custom:hover { background: linear-gradient(90deg, #9370DB, #4B0082); transform: scale(1.05); }
+.btn-custom:hover {
+    background: linear-gradient(90deg, #9370DB, #4B0082);
+    transform: scale(1.05);
+}
 
 /* Footer */
 .footer {
@@ -182,10 +183,13 @@ body {
 <!-- Hero Banner -->
 <section class="hero">
     <h1>主治醫師暨臨床教師餐敘</h1>
-    <div class="hero-bottom-text">主辦：教學研究組｜協辦：台南市醫師公會</div>
+    <div class="hero-bottom-text">
+        主辦：教學研究組｜協辦：台南市醫師公會
+    </div>
 </section>
 
 <main class="container mt-5">
+
 <!-- 活動資訊 -->
 <section class="mb-5">
     <h3 class="section-title mb-3">
@@ -232,6 +236,7 @@ body {
         </ul>
     </section>
 </section>
+
 </main>
 
 <footer class="footer">
