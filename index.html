@@ -41,35 +41,47 @@ body {
 @media (max-width: 992px) {
     .navbar-toggler { position: absolute; right: 15px; border: none; }
     .navbar-toggler svg { width: 40px; height: 40px; fill: #FFFFFF; stroke: #FFFFFF; stroke-width: 1; }
+}
 
-    /* 手機版箭頭貼近標題 */
+/* ========================================================= */
+/* 🔥 最新：紅色閃爍箭頭（電腦版左側 / 手機版右側反向） */
+/* ========================================================= */
+
+/* 電腦版：箭頭顯示在左邊 */
+.nav-link-arrow {
+    position: relative;
+    padding-left: 22px;
+}
+.nav-link-arrow::before {
+    content: "➤";
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #FF3333;
+    font-size: 1.15rem;
+    animation: arrow-flash 1s infinite alternate;
+}
+
+/* 手機版：箭頭移到右邊，並向左指：⇦ */
+@media (max-width: 768px) {
+    .nav-link-arrow {
+        padding-left: 0;
+        padding-right: 22px;
+    }
     .nav-link-arrow::before {
-        left: -18px !important;
-        font-size: 1.2rem !important;
+        content: "⇦";
+        left: auto;
+        right: -4px;
+        font-size: 1.3rem;
+        transform: translateY(-50%);
     }
 }
 
-/* ⭐ 紅色閃爍箭頭動畫 */
-.nav-link-arrow {
-  position: relative;
-  padding-left: 22px; /* 電腦版箭頭靠近但不蓋字 */
-}
-
-.nav-link-arrow::before {
-  content: "➤";
-  position: absolute;
-  left: -10px; /* ⭐ 電腦版微左移，避免遮字 */
-  top: 50%;
-  transform: translateY(-50%);
-  color: #FF3333;
-  font-size: 1.15rem;
-  animation: arrow-flash 1s infinite alternate;
-}
-
 @keyframes arrow-flash {
-  0% { opacity: 1; transform: translateY(-50%) translateX(0); }
-  50% { opacity: 0.2; transform: translateY(-50%) translateX(5px); }
-  100% { opacity: 1; transform: translateY(-50%) translateX(0); }
+    0% { opacity: 1; transform: translateY(-50%) translateX(0); }
+    50% { opacity: 0.2; transform: translateY(-50%) translateX(5px); }
+    100% { opacity: 1; transform: translateY(-50%) translateX(0); }
 }
 
 /* Hero Banner */
