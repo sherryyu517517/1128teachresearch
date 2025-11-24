@@ -24,10 +24,11 @@ h2 { color:#4B0082; font-weight:600; text-shadow:1px 1px 3px rgba(0,0,0,0.2); }
 
 .table-responsive { overflow-x:auto; max-height:500px; position:relative; }
 #checkinTable { width:max-content; min-width:100%; table-layout:auto; }
-#checkinTable th, #checkinTable td { white-space:nowrap; }
+#checkinTable th, #checkinTable td { white-space:nowrap; vertical-align:middle; }
 
 #checkinTable thead th { position: sticky; top:0; z-index:5; background-color: #4B0082 !important; color: #fff !important; }
 
+/* 固定序號與姓名欄 */
 #checkinTable th:first-child,
 #checkinTable td:first-child,
 #checkinTable th:nth-child(2),
@@ -37,8 +38,9 @@ h2 { color:#4B0082; font-weight:600; text-shadow:1px 1px 3px rgba(0,0,0,0.2); }
   background-color:#fff; /* 保持白色 */
   color:#000;
   z-index:3;
+  box-shadow: 2px 0 5px -2px rgba(0,0,0,0.3);
+  vertical-align: middle; /* 垂直置中 */
 }
-
 #checkinTable th:nth-child(2),
 #checkinTable td:nth-child(2) { z-index:2; }
 
