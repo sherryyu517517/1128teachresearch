@@ -21,25 +21,38 @@ h2 { color:#4B0082; font-weight:600; text-shadow:1px 1px 3px rgba(0,0,0,0.2); }
 .filter-input { width: 100%; font-size: 0.85rem; padding: 3px; border: 1px solid #ccc; border-radius: 5px; text-align: center; }
 
 #stats { font-size:1rem; font-weight:600; margin-bottom:15px; text-align:center; color:#4B0082; }
-
 #filteredCount { font-size:0.95rem; font-weight:500; margin-bottom:10px; text-align:center; color:#4B0082; }
 
-.table-responsive { max-height: 500px; overflow-y: auto; position: relative; }
-.table-responsive table { width: max-content; min-width: 100%; table-layout: auto; }
+.table-responsive { overflow-x:auto; max-height:500px; position:relative; }
+#checkinTable { width:max-content; min-width:100%; table-layout:auto; }
+#checkinTable th, #checkinTable td { white-space:nowrap; }
 
-#checkinTable thead th { position: sticky; top: 0; z-index: 2; background-color: #4B0082 !important; color: #fff !important; }
+#checkinTable thead th { position: sticky; top:0; z-index:5; background-color: #4B0082 !important; color: #fff !important; }
+
+#checkinTable th:first-child,
+#checkinTable td:first-child,
+#checkinTable th:nth-child(2),
+#checkinTable td:nth-child(2) {
+  position: sticky;
+  left:0;
+  background-color:#4B0082;
+  color:#fff;
+  z-index:3;
+}
+
+#checkinTable th:nth-child(2),
+#checkinTable td:nth-child(2) { z-index:2; }
 
 #checkinTable tbody tr:nth-child(even) { background-color: #F3E8FF; }
 #checkinTable tbody tr:nth-child(odd) { background-color: #FFFFFF; }
 
 #checkinTable th:first-child,
-#checkinTable td:first-child { vertical-align: middle !important; text-align: center !important; white-space: nowrap; width: 60px; }
+#checkinTable td:first-child { vertical-align: middle !important; text-align: center !important; width: 60px; }
 
 footer { text-align:center; color:#555; background: rgba(255,255,255,0.1); padding:15px; font-size:0.95rem; margin-top:60px; }
 
 @media (max-width: 768px) {
-  .table-responsive { overflow-x: auto; }
-  .filter-input { font-size: 0.75rem; }
+  .filter-input { font-size:0.75rem; }
 }
 </style>
 </head>
@@ -57,46 +70,46 @@ footer { text-align:center; color:#555; background: rgba(255,255,255,0.1); paddi
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav">
          <li class="nav-item"><a class="nav-link active" href="index.html">回首頁</a></li>
-            <li class="nav-item"><a class="nav-link" href="agenda.html">活動流程</a></li>
-            <li class="nav-item"><a class="nav-link" href="register.html">報名名單</a></li>
-            <li class="nav-item"><a class="nav-link nav-link-arrow" href="checkin-終版-F.html">簽到入場</a></li>
-            <li class="nav-item"><a class="nav-link" href="honors.html">優良暨傑出教師芳名錄</a></li>
-            <li class="nav-item"><a class="nav-link" href="https://forms.gle/DBdC3ZScynWDzEps5" target="_blank">滿意度回饋</a></li>
+         <li class="nav-item"><a class="nav-link" href="agenda.html">活動流程</a></li>
+         <li class="nav-item"><a class="nav-link" href="register.html">報名名單</a></li>
+         <li class="nav-item"><a class="nav-link nav-link-arrow" href="checkin-終版-F.html">簽到入場</a></li>
+         <li class="nav-item"><a class="nav-link" href="honors.html">優良暨傑出教師芳名錄</a></li>
+         <li class="nav-item"><a class="nav-link" href="https://forms.gle/DBdC3ZScynWDzEps5" target="_blank">滿意度回饋</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
 <main class="container" style="padding-top:100px;">
-<div class="text-center mb-2">
-  <h2>✅ 已報名與會人員</h2>
-  <div class="d-flex justify-content-center align-items-center gap-2 mb-3">
-    <input id="globalSearch" type="text" class="form-control w-50" placeholder="🔍 全欄搜尋（姓名、科別、單位、備註）">
-    <button class="refresh-btn" onclick="filterTable()">🔍 搜尋</button>
+  <div class="text-center mb-2">
+    <h2>✅ 已報名與會人員</h2>
+    <div class="d-flex justify-content-center align-items-center gap-2 mb-3">
+      <input id="globalSearch" type="text" class="form-control w-50" placeholder="🔍 全欄搜尋（姓名、科別、單位、備註）">
+      <button class="refresh-btn" onclick="filterTable()">🔍 搜尋</button>
+    </div>
   </div>
-</div>
 
-<div id="stats"></div>
-<div id="filteredCount"></div>
+  <div id="stats"></div>
+  <div id="filteredCount"></div>
 
-<div class="card">
-  <div class="table-responsive">
-    <table class="table align-middle text-center" id="checkinTable">
-      <thead class="table-dark">
-        <tr>
-          <th>序號</th>
-          <th>姓名<br><input type="text" class="filter-input" placeholder="篩選" onkeyup="columnFilter(1,this.value)"></th>
-          <th>單位<br><input type="text" class="filter-input" placeholder="篩選" onkeyup="columnFilter(2,this.value)"></th>
-          <th>職稱<br><input type="text" class="filter-input" placeholder="篩選" onkeyup="columnFilter(3,this.value)"></th>
-          <th>備註<br><input type="text" class="filter-input" placeholder="篩選" onkeyup="columnFilter(4,this.value)"></th>
-        </tr>
-      </thead>
-      <tbody id="tableBody">
-        <tr><td colspan="5" class="text-center text-muted">資料載入中...</td></tr>
-      </tbody>
-    </table>
+  <div class="card">
+    <div class="table-responsive">
+      <table class="table align-middle text-center" id="checkinTable">
+        <thead class="table-dark">
+          <tr>
+            <th>序號</th>
+            <th>姓名<br><input type="text" class="filter-input" placeholder="篩選" onkeyup="columnFilter(1,this.value)"></th>
+            <th>單位<br><input type="text" class="filter-input" placeholder="篩選" onkeyup="columnFilter(2,this.value)"></th>
+            <th>職稱<br><input type="text" class="filter-input" placeholder="篩選" onkeyup="columnFilter(3,this.value)"></th>
+            <th>備註<br><input type="text" class="filter-input" placeholder="篩選" onkeyup="columnFilter(4,this.value)"></th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <tr><td colspan="5" class="text-center text-muted">資料載入中...</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
 </main>
 
 <footer>
@@ -183,5 +196,3 @@ fetchCheckinData();
 </script>
 </body>
 </html>
-
-
