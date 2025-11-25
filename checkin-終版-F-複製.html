@@ -46,17 +46,25 @@ h2 { color:#4B0082; font-weight:600; text-shadow:1px 1px 3px rgba(0,0,0,0.2); }
 
 footer { text-align:center; color:#555; background: rgba(255,255,255,0.1); padding:15px; font-size:0.95rem; margin-top:60px; }
 
-/* 姓名欄垂直置中並固定 */
+/* -------------------- 固定姓名欄 -------------------- */
 #checkinTable th:nth-child(2),
 #checkinTable td:nth-child(2) {
-    vertical-align: middle !important;
-    text-align: center;
-    position: sticky;
-    left: 60px; /* 序號欄寬度 */
-    background-color: #fff;
-    z-index: 3;
+  position: sticky;
+  left: 0;
+  background: #FFFFFF !important;
+  z-index: 5;
+  white-space: nowrap;
+}
+#checkinTable thead th:nth-child(2) {
+  z-index: 7 !important;
 }
 
+/* 手機橫向滑動 */
+.table-responsive { overflow-x: auto; position: relative; }
+
+@media (max-width: 768px) {
+  .filter-input { font-size: 0.75rem; }
+}
 </style>
 </head>
 <body>
@@ -185,7 +193,7 @@ window.addEventListener('resize',()=>{width=window.innerWidth;height=window.inne
 // ------------------------
 // 設定與資料處理
 // ------------------------
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyT8PHxSadUi-cL2B-kDpN9DkqqRopc7QLMaXDrgNziv-Jsj9jZ7EqtPTFQT_FhFadz/exec"; // 改成你的 Apps Script 網址
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyT8PHxSadUi-cL2B-kDpN9DkqqRopc7QLMaXDrgNziv-Jsj9jZ7EqtPTFQT_FhFadz/exec";
 const tableBody = document.getElementById('tableBody');
 const countdownEl = document.getElementById('countdown');
 const statsEl = document.getElementById('stats');
@@ -304,4 +312,3 @@ fetchCheckinData();
 
 </body>
 </html>
-
