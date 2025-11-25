@@ -39,8 +39,10 @@ body {
     margin-right: 8px;
 }
 
+/* 確保分頁靠右 */
 .navbar-collapse {
     justify-content: flex-end !important;
+    background-color: #4B0082; /* 下拉選單背景 */
 }
 
 .navbar-nav .nav-link {
@@ -126,14 +128,14 @@ h1 {
 /* iframe 高度控制 */
 .pdf-container iframe {
     width: 100%;
-    height: 820px; /* PC 版預設高度 */
+    height: 820px;
     border: none;
 }
 
 /* 下載按鈕 */
 .download-btn {
     display: inline-block;
-    margin-bottom: 8px; /* 與 PDF iframe 之間 */
+    margin-bottom: 8px;
     padding: 6px 14px;
     background-color: #4B0082;
     color: #fff;
@@ -149,7 +151,7 @@ h1 {
 /* 手機版自動縮放 */
 @media (max-width: 768px) {
     .pdf-container {
-        height: calc(100vh - 220px); /* 扣掉 header 與上下間距 */
+        height: calc(100vh - 220px);
     }
     .pdf-container iframe {
         height: 100%;
@@ -186,13 +188,12 @@ h1 {
 </nav>
 
 <header>
-   
+    
 </header>
 
 <div class="container">
     <div class="card">
-         <h2>🏅 傑出教師</h2>
-        <!-- 下載按鈕在 PDF 上方 -->
+       <h2>🏅 傑出教師</h2>
         <a href="114excellent.pdf" download class="download-btn">⬇ 下載 PDF</a>
         <div class="pdf-container">
             <iframe src="114excellent.pdf"></iframe>
@@ -201,12 +202,9 @@ h1 {
 
     <div class="card">
         <h2>📘 優良教師</h2>
-        <!-- 下載按鈕在 PDF 上方 -->
         <a href="114good.pdf" download class="download-btn">⬇ 下載 PDF</a>
         <div class="pdf-container">
             <iframe src="114good.pdf"></iframe>
-        </div>
-            
         </div>
     </div>
 </div>
