@@ -12,7 +12,7 @@
 body {
     margin: 0;
     font-family: "Noto Sans TC", sans-serif;
-    background: radial-gradient(circle at 20% 30%, #e6e0f8, #d6c4f5, #c2b2e8); /* 與紫色搭配 */
+    background: radial-gradient(circle at 20% 30%, #e6e0f8, #d6c4f5, #c2b2e8);
     overflow-x: hidden;
 }
 
@@ -40,7 +40,7 @@ body {
 }
 
 .navbar-collapse {
-    justify-content: flex-end !important; /* 分項靠右 */
+    justify-content: flex-end !important;
 }
 
 .navbar-nav .nav-link {
@@ -49,7 +49,7 @@ body {
     padding-left: 14px !important;
     padding-right: 14px !important;
     display: flex;
-    align-items: center; /* 文字垂直置中 */
+    align-items: center;
     height: 100%;
 }
 
@@ -85,11 +85,6 @@ header {
     padding: 90px 20px 30px;
 }
 
-header img {
-    width: 180px;
-    margin-bottom: 20px;
-}
-
 h1 {
     font-size: 28px;
     color: #055a47;
@@ -122,21 +117,39 @@ h1 {
 .pdf-container {
     width: 100%;
     border-radius: 12px;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
+    overflow: hidden;
     background: #fff;
+    position: relative;
+    margin-bottom: 8px;
 }
 
+/* iframe 高度控制 */
 .pdf-container iframe {
     width: 100%;
-    min-height: 820px;
+    height: 820px; /* PC 版預設高度 */
     border: none;
 }
 
-/* 手機版：自動全屏 PDF */
+/* 下載按鈕 */
+.download-btn {
+    display: inline-block;
+    margin-bottom: 8px; /* 與 PDF iframe 之間 */
+    padding: 6px 14px;
+    background-color: #4B0082;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+}
+.download-btn:hover {
+    background-color: #5c0099;
+    color: #FFD700;
+}
+
+/* 手機版自動縮放 */
 @media (max-width: 768px) {
     .pdf-container {
-        height: calc(100vh - 200px); /* 扣掉 header 與 padding */
+        height: calc(100vh - 220px); /* 扣掉 header 與上下間距 */
     }
     .pdf-container iframe {
         height: 100%;
@@ -173,20 +186,27 @@ h1 {
 </nav>
 
 <header>
-    <h1>佳里奇美醫院 114年度 教學優良 / 傑出教師 芳名錄</h1>
+   
 </header>
 
 <div class="container">
     <div class="card">
+         <h2>🏅 傑出教師</h2>
+        <!-- 下載按鈕在 PDF 上方 -->
+        <a href="114excellent.pdf" download class="download-btn">⬇ 下載 PDF</a>
+        <div class="pdf-container">
+            <iframe src="114excellent.pdf"></iframe>
+        </div>
+    </div>
+
+    <div class="card">
         <h2>📘 優良教師</h2>
+        <!-- 下載按鈕在 PDF 上方 -->
+        <a href="114good.pdf" download class="download-btn">⬇ 下載 PDF</a>
         <div class="pdf-container">
             <iframe src="114good.pdf"></iframe>
         </div>
-    </div>
-    <div class="card">
-        <h2>🏅 傑出教師</h2>
-        <div class="pdf-container">
-            <iframe src="114excellent.pdf"></iframe>
+            
         </div>
     </div>
 </div>
