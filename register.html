@@ -32,6 +32,7 @@ h2 { color:#4B0082; font-weight:600; text-shadow:1px 1px 3px rgba(0,0,0,0.2); }
 #checkinTable tbody tr:nth-child(even) { background-color: #F3E8FF; }
 #checkinTable tbody tr:nth-child(odd) { background-color: #FFFFFF; }
 
+/* 序號欄垂直置中並固定 */
 #checkinTable th:first-child,
 #checkinTable td:first-child {
     vertical-align: middle !important;
@@ -44,20 +45,35 @@ h2 { color:#4B0082; font-weight:600; text-shadow:1px 1px 3px rgba(0,0,0,0.2); }
     z-index: 4;
 }
 
+/* 姓名欄垂直置中並固定 */
 #checkinTable th:nth-child(2),
 #checkinTable td:nth-child(2) {
     vertical-align: middle !important;
     text-align: center;
     position: sticky;
-    left: 60px;
+    left: 60px; /* 序號欄寬度 */
     background-color: #fff;
     z-index: 3;
 }
 
-#checkinTable thead th:nth-child(2) { z-index: 5; }
-#checkinTable thead th:first-child { z-index: 6; }
+/* 表頭姓名欄更高層級 */
+#checkinTable thead th:nth-child(2) {
+    z-index: 5;
+}
+#checkinTable thead th:first-child {
+    z-index: 6;
+}
 
 footer { text-align:center; color:#555; background: rgba(255,255,255,0.1); padding:15px; font-size:0.95rem; margin-top:60px; }
+
+/* 手機版：隱藏單位、職稱、備註的搜尋欄位 */
+@media (max-width: 768px) {
+  #checkinTable thead th:nth-child(3) .filter-input,
+  #checkinTable thead th:nth-child(4) .filter-input,
+  #checkinTable thead th:nth-child(5) .filter-input {
+    display: none !important;
+  }
+}
 
 @media (max-width: 768px) {
   .table-responsive { overflow-x: auto; }
@@ -79,11 +95,11 @@ footer { text-align:center; color:#555; background: rgba(255,255,255,0.1); paddi
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav">
          <li class="nav-item"><a class="nav-link active" href="index.html">回首頁</a></li>
-         <li class="nav-item"><a class="nav-link" href="agenda.html">活動流程</a></li>
-         <li class="nav-item"><a class="nav-link" href="register.html">報名名單</a></li>
-         <li class="nav-item"><a class="nav-link nav-link-arrow" href="checkin.html">簽到入場</a></li>
-         <li class="nav-item"><a class="nav-link" href="honors.html">優良暨傑出教師芳名錄</a></li>
-         <li class="nav-item"><a class="nav-link" href="https://forms.gle/DBdC3ZScynWDzEps5" target="_blank">滿意度回饋</a></li>
+            <li class="nav-item"><a class="nav-link" href="agenda.html">活動流程</a></li>
+            <li class="nav-item"><a class="nav-link" href="register.html">報名名單</a></li>
+            <li class="nav-item"><a class="nav-link nav-link-arrow" href="checkin.html">簽到入場</a></li>
+            <li class="nav-item"><a class="nav-link" href="honors.html">優良暨傑出教師芳名錄</a></li>
+            <li class="nav-item"><a class="nav-link" href="https://forms.gle/DBdC3ZScynWDzEps5" target="_blank">滿意度回饋</a></li>
       </ul>
     </div>
   </div>
@@ -150,24 +166,18 @@ async function fetchCheckinData(){
       return;
     }
     tableBody.innerHTML='';
-
     data.forEach((p,i)=>{
       if(!p.name) return;
-
       const row=document.createElement('tr');
-
       row.innerHTML=`<td>${i+1}</td>
       <td>${maskName(p.name)}</td>
       <td>${p.department||''}</td>
       <td>${p.unit||''}</td>
       <td>${p.remark||''}</td>`;
-
       tableBody.appendChild(row);
     });
-
     statsEl.textContent=`總報名人數：${data.length}`;
     updateFilteredCountAndReindex();
-
   }catch(err){
     console.error(err);
     tableBody.innerHTML=`<tr><td colspan="5" class="text-danger">⚠️ 資料載入失敗</td></tr>`;
