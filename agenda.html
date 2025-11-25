@@ -10,7 +10,7 @@
 body {
     margin:0;
     font-family:"Noto Sans TC",sans-serif;
-    background: radial-gradient(circle at 20% 30%, #e6e0f8, #d6c4f5, #c2b2e8);
+    background: linear-gradient(to bottom, #f5f3fa, #e8e6f8);
     overflow-x:hidden;
 }
 
@@ -44,8 +44,20 @@ body {
 .navbar-nav .nav-link:hover { color:#FFD700 !important; }
 .navbar-nav .nav-link.active { color:#FFD700 !important; font-weight:700; }
 
+/* 手機版下拉選單深紫色 */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        background-color: #4B0082;
+        padding: 15px;
+    }
+    .navbar-collapse .nav-link {
+        color: #fff !important;
+        padding: 10px 0;
+    }
+}
+
 header { text-align:center; padding:90px 20px 30px; }
-h1 { font-size:28px; color:#055a47; font-weight:700; letter-spacing:1px; }
+h1 { font-size:28px; color:#4B0082; font-weight:700; letter-spacing:1px; }
 .container { max-width:1100px; margin:auto; padding:20px; }
 
 /* Timeline 卡片樣式 */
@@ -57,17 +69,17 @@ h1 { font-size:28px; color:#055a47; font-weight:700; letter-spacing:1px; }
 .timeline::before {
     content: '';
     position: absolute;
-    left: 20px;
+    left: 30px;
     top: 0;
     bottom: 0;
     width: 4px;
-    background: #4B0082;
+    background: #C0A8F0;
     border-radius:2px;
 }
 .timeline-item {
     position: relative;
     margin-bottom: 40px;
-    padding-left: 60px;
+    padding-left: 70px;
     opacity: 0;
     transform: translateX(-50px);
     transition: all 0.8s ease-out;
@@ -79,31 +91,37 @@ h1 { font-size:28px; color:#055a47; font-weight:700; letter-spacing:1px; }
 .timeline-item::before {
     content: '';
     position: absolute;
-    left: 12px;
-    top: 0;
+    left: 22px;
+    top: 12px;
     width: 16px;
     height: 16px;
-    background: #FFD700;
+    background: #4B0082;
     border-radius:50%;
-    border: 2px solid #4B0082;
+    border: 3px solid #A080F0;
 }
+
+/* 卡片樣式改方角 */
 .card-timeline {
-    background: rgba(255,255,255,0.9);
-    border-radius:15px;
-    padding:20px 25px;
-    box-shadow:0 6px 15px rgba(0,0,0,0.2);
+    background: #ffffff;
+    border-radius:0;
+    padding:25px 30px;
+    box-shadow:0 10px 20px rgba(0,0,0,0.12);
+    transition: transform 0.3s ease;
+}
+.card-timeline:hover {
+    transform: translateY(-5px);
 }
 .card-timeline h5 { font-weight:700; color:#4B0082; }
-.card-timeline p { margin:5px 0; }
+.card-timeline p { margin:5px 0; color:#333; }
 
 /* 響應式 */
 @media (max-width:768px) {
     header { padding:80px 15px 20px; }
     h1 { font-size:22px; }
-    .timeline { padding-left:15px; }
-    .timeline::before { left:15px; width:3px; }
-    .timeline-item { padding-left:50px; }
-    .timeline-item::before { left:8px; width:14px; height:14px; }
+    .timeline { padding-left:20px; }
+    .timeline::before { left:20px; width:3px; }
+    .timeline-item { padding-left:60px; }
+    .timeline-item::before { left:12px; width:14px; height:14px; }
 }
 </style>
 </head>
@@ -133,6 +151,7 @@ h1 { font-size:28px; color:#055a47; font-weight:700; letter-spacing:1px; }
 </nav>
 
 <header>
+    
 </header>
 
 <div class="container">
@@ -206,4 +225,3 @@ items.forEach(item => observer.observe(item));
 </script>
 </body>
 </html>
-
