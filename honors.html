@@ -80,6 +80,7 @@ h1 { font-size:28px; color:#055a47; font-weight:700; letter-spacing:1px; }
          <li class="nav-item"><a class="nav-link" href="agenda.html">活動流程</a></li>
          <li class="nav-item"><a class="nav-link" href="register.html">報名名單</a></li>
          <li class="nav-item"><a class="nav-link" href="checkin-終版-F-複製-test.html">簽到入場</a></li>
+         <li class="nav-item"><a class="nav-link" href="newdoctor.html">新進醫師介紹</a></li> 
          <li class="nav-item"><a class="nav-link active" href="honors.html">優良暨傑出教師芳名錄</a></li>
          <li class="nav-item"><a class="nav-link" href="https://forms.gle/DBdC3ZScynWDzEps5" target="_blank">滿意度回饋</a></li>
       </ul>
@@ -88,20 +89,20 @@ h1 { font-size:28px; color:#055a47; font-weight:700; letter-spacing:1px; }
 </nav>
 
 <header>
-    <h1>佳里奇美醫院 114年度 教學優良 / 傑出教師 芳名錄</h1>
+    
 </header>
 
 <div class="container">
     <div class="card">
-        <h2>📘 優良教師</h2>
-        <a href="114good.pdf" download class="download-btn">⬇ 下載 PDF</a>
-        <div class="pdf-container" id="goodPdf"></div>
-    </div>
-
-    <div class="card">
         <h2>🏅 傑出教師</h2>
         <a href="114excellent.pdf" download class="download-btn">⬇ 下載 PDF</a>
         <div class="pdf-container" id="excellentPdf"></div>
+    </div>
+
+    <div class="card">
+         <h2>📘 優良教師</h2>
+        <a href="114good.pdf" download class="download-btn">⬇ 下載 PDF</a>
+        <div class="pdf-container" id="goodPdf"></div>
     </div>
 </div>
 
@@ -128,10 +129,11 @@ function renderPDF(url, containerId) {
 }
 
 // 渲染兩份 PDF
-renderPDF('114good.pdf','goodPdf');
 renderPDF('114excellent.pdf','excellentPdf');
+renderPDF('114good.pdf','goodPdf');
 </script>
 
 </body>
 </html>
+
 
