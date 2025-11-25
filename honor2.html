@@ -1,95 +1,179 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>114年度 教學優良 / 傑出教師 芳名錄</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: "Noto Sans TC", sans-serif;
-            background: radial-gradient(circle at 20% 30%, #e8fff4, #c4f5e3, #b2e8d6);
-            overflow-x: hidden;
-        }
-        /* 光暈流動背景 */
-        .glow-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(200, 255, 230, 0.3), transparent),
-                        radial-gradient(circle at 70% 70%, rgba(200, 255, 230, 0.7), rgba(150, 230, 200, 0.2), transparent);
-            filter: blur(60px);
-            animation: moveGlow 12s infinite alternate ease-in-out;
-            z-index: -1;
-        }
-        @keyframes moveGlow {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, -40px); }
-        }
-        header {
-            text-align: center;
-            padding: 40px 20px 20px;
-        }
-        header img {
-            width: 180px;
-            margin-bottom: 20px;
-        }
-        h1 {
-            font-size: 28px;
-            color: #055a47;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 20px;
-        }
-        .card {
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 14px;
-            padding: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
-            backdrop-filter: blur(10px);
-        }
-        .card h2 {
-            margin-top: 0;
-            font-size: 22px;
-            color: #0d7058;
-        }
-        iframe {
-            width: 100%;
-            height: 820px;
-            border: none;
-            border-radius: 12px;
-        }
-        @media (max-width: 768px) {
-            iframe { height: 600px; }
-            h1 { font-size: 22px; }
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>114年度教學優良/傑出教師芳名錄 | 佳里奇美醫院114年度餐敘</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: "Noto Sans TC", sans-serif;
+    background: radial-gradient(circle at 20% 30%, #e8fff4, #c4f5e3, #b2e8d6);
+    overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #4B0082 !important;
+    height: 68px;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand {
+    color: #FFFFFF !important;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand img {
+    height: 34px;
+    margin-right: 8px;
+}
+
+/* 這裡確保分頁靠右 */
+.navbar-collapse {
+    justify-content: flex-end !important;
+}
+
+.navbar-nav .nav-link {
+    color: #FFFFFF !important;
+    font-weight: 600;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+    display: flex;
+    align-items: flex-start; /* 文字微微往上 */
+    height: 100%;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #FFD700 !important;
+}
+
+.navbar-nav .nav-link.active {
+    color: #FFD700 !important;
+    font-weight: 700;
+}
+
+/* 背景光暈 */
+.glow-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(200, 255, 230, 0.3), transparent),
+                radial-gradient(circle at 70% 70%, rgba(200, 255, 230, 0.7), rgba(150, 230, 200, 0.2), transparent);
+    filter: blur(60px);
+    animation: moveGlow 12s infinite alternate ease-in-out;
+    z-index: -1;
+}
+@keyframes moveGlow {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, -40px); }
+}
+
+header {
+    text-align: center;
+    padding: 90px 20px 30px;
+}
+
+header img {
+    width: 180px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 28px;
+    color: #055a47;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(10px);
+}
+
+.card h2 {
+    margin-top: 0;
+    font-size: 22px;
+    color: #0d7058;
+}
+
+iframe {
+    width: 100%;
+    height: 820px;
+    border: none;
+    border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+    iframe { height: 600px; }
+    h1 { font-size: 22px; }
+}
+</style>
 </head>
+
 <body>
-    <div class="glow-bg"></div>
+<div class="glow-bg"></div>
 
-    <header>
-        <img src="chimei-logo.png" alt="奇美醫院 Logo" />
-        <h1>佳里奇美醫院 114年度 教學優良 / 傑出教師 芳名錄</h1>
-    </header>
-
-    <div class="container">
-        <div class="card">
-            <h2>📘 優良教師</h2>
-             <iframe src="114good.pdf"></iframe>
-        </div>
-
-        <div class="card">
-            <h2>🏅 傑出教師</h2>
-             <iframe src="114excellent.pdf"></iframe>
-        </div>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+       <img src="chimei-logo-green.png" alt="奇美醫院">
+       佳里奇美醫院114年度餐敘
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+         <li class="nav-item"><a class="nav-link" href="index.html">回首頁</a></li>
+         <li class="nav-item"><a class="nav-link" href="agenda.html">活動流程</a></li>
+         <li class="nav-item"><a class="nav-link" href="register.html">報名名單</a></li>
+         <li class="nav-item"><a class="nav-link" href="checkin-終版-F-複製-test.html">簽到入場</a></li>
+         <li class="nav-item"><a class="nav-link active" href="honors.html">優良暨傑出教師芳名錄</a></li>
+         <li class="nav-item"><a class="nav-link" href="https://forms.gle/DBdC3ZScynWDzEps5" target="_blank">滿意度回饋</a></li>
+      </ul>
     </div>
+  </div>
+</nav>
+
+<header>
+    <h1>佳里奇美醫院 114年度 教學優良 / 傑出教師 芳名錄</h1>
+</header>
+
+<div class="container">
+    <div class="card">
+        <h2>📘 優良教師</h2>
+        <iframe src="114good.pdf"></iframe>
+    </div>
+    <div class="card">
+        <h2>🏅 傑出教師</h2>
+        <iframe src="114excellent.pdf"></iframe>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
