@@ -80,6 +80,15 @@ footer { text-align:center; color:#555; background: rgba(255,255,255,0.1); paddi
     vertical-align: middle !important;
   }
 
+  /* th 標題 flex 排版讓 br 也垂直置中 */
+  #checkinTable th:nth-child(2),
+  #checkinTable th:nth-child(4) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
   .filter-input { font-size: 0.75rem; }
 }
 </style>
