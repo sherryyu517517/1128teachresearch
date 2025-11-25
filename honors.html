@@ -80,8 +80,7 @@ h1 { font-size:28px; color:#055a47; font-weight:700; letter-spacing:1px; }
          <li class="nav-item"><a class="nav-link" href="agenda.html">活動流程</a></li>
          <li class="nav-item"><a class="nav-link" href="register.html">報名名單</a></li>
          <li class="nav-item"><a class="nav-link" href="checkin-終版-F-複製-test.html">簽到入場</a></li>
-         <li class="nav-item"><a class="nav-link" href="newdoctor.html">新進醫師介紹</a></li> 
-         <li class="nav-item"><a class="nav-link active" href="honors.html">優良暨傑出教師芳名錄</a></li>
+         <li class="nav-item"><a class="nav-link active" href="honors.html">新進醫師/年度優良教師精選集</a></li>
          <li class="nav-item"><a class="nav-link" href="https://forms.gle/DBdC3ZScynWDzEps5" target="_blank">滿意度回饋</a></li>
       </ul>
     </div>
@@ -93,6 +92,12 @@ h1 { font-size:28px; color:#055a47; font-weight:700; letter-spacing:1px; }
 </header>
 
 <div class="container">
+    <div class="card">
+        <h2>👨‍⚕️ 新進醫師介紹</h2>
+        <a href="114newdoctor.pdf" download class="download-btn">→ 這裡看PDF</a>
+        <div class="pdf-container" id="newdoctorPdf"></div>
+    </div>
+    
     <div class="card">
         <h2>🏅 傑出教師</h2>
         <a href="114excellent.pdf" download class="download-btn">→ 這裡看PDF</a>
@@ -128,13 +133,15 @@ function renderPDF(url, containerId) {
     });
 }
 
-// 渲染兩份 PDF
+// 渲染三份 PDF
+renderPDF('114newdoctor.pdf','newdoctorPdf');
 renderPDF('114excellent.pdf','excellentPdf');
 renderPDF('114good.pdf','goodPdf');
 </script>
 
 </body>
 </html>
+
 
 
 
