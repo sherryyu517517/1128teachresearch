@@ -62,9 +62,8 @@ footer { text-align:center; color:#555; background: rgba(255,255,255,0.1); paddi
 /* 手機橫向滑動 */
 .table-responsive { overflow-x: auto; position: relative; }
 
-/* 手機版隱藏特定欄位篩選框 */
 @media (max-width: 768px) {
-  .filter-input { font-size: 0.75rem; }
+  /* 隱藏所有欄位的篩選框 */
   #checkinTable th:nth-child(2) input.filter-input,
   #checkinTable th:nth-child(3) input.filter-input,
   #checkinTable th:nth-child(4) input.filter-input,
@@ -72,6 +71,16 @@ footer { text-align:center; color:#555; background: rgba(255,255,255,0.1); paddi
   #checkinTable th:nth-child(7) input.filter-input {
     display: none;
   }
+
+  /* 手機版姓名欄與單位欄垂直置中 */
+  #checkinTable th:nth-child(2),
+  #checkinTable td:nth-child(2),
+  #checkinTable th:nth-child(4),
+  #checkinTable td:nth-child(4) {
+    vertical-align: middle !important;
+  }
+
+  .filter-input { font-size: 0.75rem; }
 }
 </style>
 </head>
