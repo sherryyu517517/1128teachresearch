@@ -88,20 +88,20 @@ h1 { font-size:28px; color:#055a47; font-weight:700; letter-spacing:1px; }
 </nav>
 
 <header>
-    <h1>教學傑出 / 優良教師 芳名錄</h1>
+    <h1>教學優良 / 傑出教師 芳名錄</h1>
 </header>
 
 <div class="container">
     <div class="card">
-        <h2>🏅 傑出教師</h2>
-        <a href="114excellent.pdf" download class="download-btn">→ 這裡看PDF</a>
-        <div class="pdf-container" id="excellentPdf"></div>
-    </div>
-
-    <div class="card">
         <h2>📘 優良教師</h2>
         <a href="114good.pdf" download class="download-btn">→ 這裡看PDF</a>
         <div class="pdf-container" id="goodPdf"></div>
+    </div>
+
+    <div class="card">
+        <h2>🏅 傑出教師</h2>
+        <a href="114excellent.pdf" download class="download-btn">→ 這裡看PDF</a>
+        <div class="pdf-container" id="excellentPdf"></div>
     </div>
 </div>
 
@@ -128,12 +128,9 @@ function renderPDF(url, containerId) {
 }
 
 // 渲染兩份 PDF
-renderPDF('114excellent.pdf','excellentPdf');
 renderPDF('114good.pdf','goodPdf');
+renderPDF('114excellent.pdf','excellentPdf');
 </script>
 
 </body>
 </html>
-
-
-
