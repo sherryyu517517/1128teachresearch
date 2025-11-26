@@ -83,9 +83,63 @@ footer { text-align:center; color:#555; background: rgba(255,255,255,0.1); paddi
     vertical-align: middle !important;
   }
 }
+
+/* ====== 翻牌倒數 CSS ====== */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(15px) brightness(0.6);
+  background: rgba(255, 255, 255, 0.1);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  flex-direction: column;
+  color: #fff;
+  text-align:center;
+}
+.flip-clock { display: flex; gap: 15px; margin-top:20px; }
+.flip-unit {
+  width: 80px;
+  height: 110px;
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
+  overflow:hidden;
+  flex-direction: column;
+  perspective: 400px;
+}
+.flip-unit .number {
+  display:block;
+  animation: flip 0.7s ease forwards;
+}
+.flip-unit .label { font-size: 1rem; margin-top: 5px; color:#fff; }
+@keyframes flip { 0% { transform: rotateX(90deg); opacity:0; } 100% { transform: rotateX(0deg); opacity:1; } }
+
 </style>
 </head>
 <body>
+
+<!-- ====== 彈窗翻牌倒數 ====== -->
+<div id="overlay">
+  <h2 style="font-size:2rem;font-weight:700;">🚫 主治醫師暨臨床教師餐敘尚未開放報到</h2>
+  <p>報到將於 <b>11 月 28 日 17:30</b> 開始</p>
+  <div class="flip-clock">
+    <div class="flip-unit"><div class="number" id="flip-h">00</div><div class="label">時</div></div>
+    <div class="flip-unit"><div class="number" id="flip-m">00</div><div class="label">分</div></div>
+    <div class="flip-unit"><div class="number" id="flip-s">00</div><div class="label">秒</div></div>
+  </div>
+</div>
 
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
   <div class="container">
@@ -330,16 +384,47 @@ function filterTable(){
 // 自動更新名單
 setInterval(()=>{ counter--; if(counter<=0)fetchCheckinData(); countdownEl.textContent=`⏳ ${counter} 秒後自動更新`; },1000);
 fetchCheckinData();
+
+const overlay = document.getElementById('overlay');
+const openTime = new Date("2025-11-28T17:30:00+08:00"); // 開放時間
+
+function updateCountdown() {
+  const now = new Date();
+  const diff = openTime - now;
+
+  if(diff <= 0){
+    overlay.style.display = 'none';
+    document.querySelector("#customCheckinForm button[type='submit']").disabled = false;
+    return;
+  }
+
+  overlay.style.display = 'flex';
+
+  const hours = Math.floor(diff / 3600000);
+  const mins  = Math.floor((diff % 3600000) / 60000);
+  const secs  = Math.floor((diff % 60000) / 1000);
+
+  ['flip-h','flip-m','flip-s'].forEach((id,i)=>{
+    let num = [hours, mins, secs][i];
+    const el = document.getElementById(id);
+    if(el.textContent != String(num).padStart(2,'0')){
+      el.textContent = String(num).padStart(2,'0');
+      el.style.animation = 'none';
+      void el.offsetWidth; // 重新觸發動畫
+      el.style.animation = 'flip 0.7s ease';
+    }
+  });
+
+  document.querySelector("#customCheckinForm button[type='submit']").disabled = true;
+}
+
+// 每秒更新倒數
+setInterval(updateCountdown, 1000);
+
+// 頁面初始
+updateCountdown();
+
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
