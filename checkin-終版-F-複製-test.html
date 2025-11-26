@@ -101,6 +101,14 @@ footer { text-align:center; color:#555; background: rgba(255,255,255,0.1); paddi
   color: #fff;
   text-align:center;
 }
+
+/* 手機版下拉選單不被 overlay 遮住 */
+@media (max-width: 768px) {
+  #overlay {
+    z-index: 1040; /* 比 Bootstrap navbar 下拉選單還低即可 */
+  }
+}
+
 .flip-clock { display: flex; gap: 15px; margin-top:20px; }
 .flip-unit {
   width: 80px;
